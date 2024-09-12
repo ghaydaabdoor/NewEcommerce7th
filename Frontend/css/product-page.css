@@ -39,7 +39,6 @@
     margin-top: 30px;
 }
 .product-details-page .pro_details_pos .product_details.product_details_sticky {
-    position: sticky;
     top: 0px;
 }
 .product-details-page.pro-style1 .pro_details_pos.pro_details_left_pos .product_detail_slider,
@@ -2699,7 +2698,6 @@
     padding: 100px 0px;
 }
 .product-details-page6 .pro_details_pos .product_details.product_details_sticky {
-    position: sticky;
     top: 30px;
 }
 .product-details-page6 .pro_details_pos.pro_details_left_pos .product_detail_slider,

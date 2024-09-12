@@ -4,6 +4,7 @@ using Project7Candy.DTO;
 using Project7Candy.Models;
 using Project7Candy.Services;
 using Microsoft.EntityFrameworkCore;
+using PayPalCheckoutSdk.Orders;
 
 
 namespace Project7Candy.Controllers
@@ -14,12 +15,13 @@ namespace Project7Candy.Controllers
     {
         private readonly MyDbContext _db;
         private readonly TokenGenerator _tokenGenerator;
+        private readonly ILogger<UserController> _logger;
 
-
-        public UserController(MyDbContext db, TokenGenerator tokenGenerator)
+        public UserController(MyDbContext db, TokenGenerator tokenGenerator, ILogger<UserController> logger)
         {
             _db = db;
             _tokenGenerator = tokenGenerator;
+            _logger = logger;
 
         }
         [HttpPost("register")]
@@ -68,9 +70,27 @@ namespace Project7Candy.Controllers
             var roles = _db.UserRoles.Where(r => r.UserId == user.UserId).Select(r => r.Role).ToList();
             var token = _tokenGenerator.GenerateToken(user.FirstName + " " + user.LastName, roles);
             // Generate a token or return a success response
+
+            _logger.LogInformation("This is an informational message.");
+            _logger.LogWarning("This is a warning message.");
+            _logger.LogError("This is an error message.");
+
             return Ok(new { Token = token, UserId = user.UserId, UserType=user.UserType });
         }
+        [HttpGet("GetAllTheUsers")]
+        public IActionResult GetAllTheUsers()
+        {
+            var users = _db.Users.Select(u => new
+            {
+                u.UserId,
+                u.FirstName,
+                u.LastName,
+                u.Email,
+                u.Phone,
+            }).ToList();
 
+            return Ok(users);
+        }
 
         [HttpPost("registerbyGoogle")]
         public IActionResult RegisterUser([FromBody] GoogleUserDto userDto)
@@ -85,22 +105,19 @@ namespace Project7Candy.Controllers
             // Create a new user object
             var user = new User
             {
-
                 Uid = userDto.uid,
                 FirstName = userDto.displayName,
-
                 Email = userDto.email,
                 UserType = "client"
-
-
-
             };
 
             _db.Users.Add(user);
             _db.SaveChanges();
 
-            return Ok(user);
+            return Ok(new {UserId = user.UserId, UserType = user.UserType });
         }
+
+
         [HttpGet("Orders")]
         public IActionResult GetAllUsers()
         {

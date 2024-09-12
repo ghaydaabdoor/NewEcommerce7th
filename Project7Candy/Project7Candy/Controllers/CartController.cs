@@ -34,50 +34,65 @@ namespace Project7Candy.Controllers
         }
 
         [HttpPost("addtocart")]
-        public IActionResult AddCartItem([FromBody] CartItemRequest cart)
+        public IActionResult AddCartItems([FromBody] CartItemBatchRequest cartBatch)
         {
-            // Step 1: Retrieve the available stock of the product from the database
-            var product = _db.Products.SingleOrDefault(p => p.ProductId == cart.ProductId);
-            if (product == null)
+            var productIds = cartBatch.Items.Select(i => i.ProductId).ToList();
+            var products = _db.Products.Where(p => productIds.Contains(p.ProductId)).ToList();
+
+            if (products.Count != cartBatch.Items.Count)
             {
-                return NotFound("The product does not exist.");
+                return NotFound("Some products do not exist.");
             }
 
-            // Step 2: Check if the requested quantity is available
-            if (product.Stock < cart.Quantity)
+            foreach (var item in cartBatch.Items)
             {
-                return BadRequest("The requested quantity is not available.");
-            }
+                var product = products.SingleOrDefault(p => p.ProductId == item.ProductId);
 
-            // Step 3: Check if the product already exists in the user's cart
-            var existingCartItem = _db.CartItems.SingleOrDefault(ci => ci.CartId == cart.CartId && ci.ProductId == cart.ProductId);
-
-            if (existingCartItem != null)
-            {
-                // If the product exists in the cart, just update the quantity
-                existingCartItem.Quantity += cart.Quantity;
-            }
-            else
-            {
-                // If the product does not exist, create a new cart item
-                var cartItem = new CartItem
+                // Step 2: Check if the requested quantity is available
+                if (product.Stock < item.Quantity)
                 {
-                    CartId = cart.CartId,
-                    Quantity = cart.Quantity,
-                    ProductId = cart.ProductId
-                };
+                    return BadRequest($"The requested quantity for product {product.ProductName} is not available.");
+                }
 
-                _db.CartItems.Add(cartItem);
+                // Step 3: Check if the product already exists in the user's cart
+                var existingCartItem = _db.CartItems.SingleOrDefault(ci => ci.CartId == cartBatch.CartId && ci.ProductId == item.ProductId);
+
+                if (existingCartItem != null)
+                {
+                    // If the product exists in the cart, just update the quantity
+                    existingCartItem.Quantity += item.Quantity;
+                }
+                else
+                {
+                    // If the product does not exist, create a new cart item
+                    var cartItem = new CartItem
+                    {
+                        CartId = cartBatch.CartId,
+                        Quantity = item.Quantity,
+                        ProductId = item.ProductId
+                    };
+
+                    _db.CartItems.Add(cartItem);
+                }
+
+                // Step 4: Update the product's stock in the database
+                product.Stock -= item.Quantity;
             }
-
-            // Step 4: Update the product's stock in the database
-            product.Stock -= cart.Quantity;
 
             // Step 5: Save the changes to the database
             _db.SaveChanges();
 
             return Ok();
         }
+
+        // Define the request body
+        public class CartItemBatchRequest
+        {
+            public int CartId { get; set; }
+            public List<CartItemRequest> Items { get; set; }
+        }
+
+
 
 
 

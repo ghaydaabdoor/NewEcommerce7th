@@ -40,12 +40,233 @@
     <link rel="stylesheet" type="text/css" href="css/slick.css">
     <!-- style css -->
     <link rel="stylesheet" type="text/css" href="css/style2.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+
     <!-- product-page css -->
     <link rel="stylesheet" type="text/css" href="css/product-page.css">
     <!-- blog-page css -->
     <link rel="stylesheet" type="text/css" href="css/blog.css">
 
     <style>
+        #commentText {
+                width: 1110px;
+                height: 125.6px;
+                background-color: #FFFFFF;
+                padding: 10px 15px;
+                border: 1px solid #ccc;
+                box-sizing: border-box;
+            }
+            
+            button {
+                color: #C19D60;
+                font-size: 16px;
+                padding: 13px 30px;
+                background-color: rgba(0, 0, 0, 0);
+                text-transform: uppercase;
+                font-weight: 400;
+                border: 2px solid #C19D60;
+                border-radius: 0px;
+                letter-spacing: 0.5px;
+                line-height: 1;
+                cursor: pointer;
+                transition: background-color 0.3s, color 0.3s;
+            }
+            
+            button:hover {
+                background-color: #C19D60;
+                color: #FFFFFF;
+            }
+            
+            button:focus {
+                outline: none;
+                box-shadow: 0 0 0 3px rgba(193, 157, 96, 0.5);
+            }
+            
+            #responseMessage {
+                text-align: center;
+                margin-top: 20px;
+                color: #333;
+            }
+            
+            .product_details_info .pro-nprist .product-info .product-quantity-action {
+                display: flex;
+                align-items: baseline;
+                flex-wrap: wrap;
+            }
+            
+            .blog-article-wrapper {
+                display: flex;
+                flex-direction: column;
+                padding: 20px;
+                background-color: #f9f9f9;
+                border-radius: 8px;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            
+            .blog-article-wrap {
+                margin-bottom: 20px;
+            }
+            
+            form {
+                display: flex;
+                flex-direction: column;
+            }
+            
+            label.required {
+                font-weight: bold;
+                margin-bottom: 8px;
+                color: #333;
+            }
+            
+            textarea {
+                width: 100%;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                resize: vertical;
+                margin-bottom: 12px;
+                box-sizing: border-box;
+            }
+            
+            button {
+                color: #c19d60;
+                font-size: 16px;
+                padding: 0;
+                background-color: rgba(0, 0, 0, 0);
+                text-transform: uppercase;
+                font-weight: 400;
+                border: 2px solid #c19d60;
+                border-radius: 0px;
+                letter-spacing: 0.5px;
+                line-height: 1;
+                height: 50px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                transition: background-color 0.3s, color 0.3s;
+            }
+            
+            button:hover {
+                background-color: #c19d60;
+                color: #fff;
+            }
+            
+            .product-rating {
+                display: flex;
+            }
+            
+            .star {
+                font-size: 2rem;
+                color: #d3d3d3;
+                cursor: pointer;
+                transition: color 0.2s;
+            }
+            
+            .product-rating .star:hover {
+                color: #f39c12;
+            }
+            
+            .star.selected {
+                color: #f39c12;
+            }
+            
+            .product-rating .star:hover~.star {
+                color: #d3d3d3;
+            }
+            
+            .product_details_info .pro-nprist .product-info .product-quantity-action {
+                display: flex;
+                justify-content: space-evenly;
+                flex-direction: row;
+                flex-wrap: wrap;
+                align-items: center;
+            }
+            
+            .cmt-info-wrap {
+                margin-bottom: 20px;
+                border-bottom: 1px solid #ddd;
+                padding-bottom: 10px;
+            }
+            
+            .comment-info {
+                display: flex;
+                flex-direction: column;
+                padding: 10px;
+                background-color: #f9f9f9;
+                border-radius: 5px;
+            }
+            
+            .comment-avtar {
+                display: flex;
+                align-items: center;
+                margin-bottom: 10px;
+            }
+            
+            .review-name {
+                margin-right: 10px;
+            }
+            
+            .avtar-cmt {
+                display: inline-block;
+                background-color: #ccc;
+                color: #fff;
+                padding: 5px 10px;
+                border-radius: 50%;
+                font-weight: bold;
+            }
+            
+            .cmt-auth {
+                font-size: 14px;
+            }
+            
+            .review-info {
+                font-size: 12px;
+                color: #888;
+            }
+            
+            .comment-content {
+                margin-top: 10px;
+            }
+            
+            .comment-desc p {
+                font-size: 16px;
+                line-height: 1.5;
+                margin: 0;
+                color: #333;
+            }
+            .pro-style4 .product-description-tab .product-tab .product-description {
+                padding: 0px 10px;
+            }
+            .collapse p{
+                padding: 20px;
+            }
+
+            /* Container for images */
+.swiper-slide .product-image {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Ensure all images are uniform */
+.swiper-slide .product-image img {
+  width: 100%;
+  height: auto;
+  object-fit: cover; /* Ensures image covers the container */
+  max-height: 200px; /* Set max height as needed */
+}
+
+/* Center text and align content */
+.swiper-slide .product-content {
+  text-align: center;
+}
+
+
+
+
         /* General styling for stars */
         .product-rating {
             display: flex;
@@ -184,6 +405,29 @@
         a {
             cursor: pointer;
         }
+
+
+                    /* Ensure all images inside the swiper slides have the same size */
+.swiper-slide .product-image {
+  width: 100%; /* Adjust width as needed */
+  height: auto; /* Maintain aspect ratio */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Fix the height for the image container to make sure images fit uniformly */
+.swiper-slide .product-image img {
+  width: 100%; /* Make image fill the container */
+  height: auto; /* Maintain aspect ratio */
+  object-fit: cover; /* Ensure the image covers the container without distortion */
+  max-height: 200px; /* Adjust the max-height as needed */
+}
+
+/* Optional: Ensure product-content section fits well */
+.swiper-slide .product-content {
+  text-align: center;
+}
     </style>
 </head>
 
@@ -724,27 +968,36 @@
                                 <div class="blog-article-wrap blog-article">
                                     <!-- blog post comment start -->
                                     <form id="CommentForm" onsubmit="AddNewComment()">
-                                        <!-- <div class="blog-comments">
-                                            <div class="review_comment">
-                                                <div class="cmt-tit-count" id="CmtTitCount">
-                                                    
-                                                </div>
-                                                <div class="cmt-info-wrap">
-                                                    <div class="comment-info" id="AddNewComment">
-                                                        
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="blog-comment-form" id="NewCommentByUser">
+                                    <div class="blog-comments">
+                                        <div class="review_comment">
+                                            <div class="cmt-tit-count" id="CmtTitCount">
                                                 
                                             </div>
-                                        </div> -->
-                                        <label for="commentText">Comment</label>
-                                        <textarea id="commentText" name="commentText" rows="4" required></textarea>
-
-                                        <button type="submit">Submit Comment</button>
+                                            <div class="cmt-info-wrap">
+                                                <div class="comment-info" id="AddNewComment">
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="blog-comment-form" id="NewCommentByUser">
+                                            
+                                        </div>
+                                    </div>
+                                    <label class="required" for="commentText">Comment</label>
+                                    <textarea
+                                    id="commentText"
+                                    name="commentText"
+                                    rows="4"
+                                    required
+                                    placeholder="Add Your Comment Here!"
+                                    ></textarea>
+                            
+                                    <button type="submit">Submit Comment</button>
                                     </form>
-                                    <div id="responseMessage" style="text-align: center; margin-top: 20px"></div>
+                                    <div
+                                        id="responseMessage"
+                                        style="text-align: center; margin-top: 20px"
+                                    ></div>
                                     <!-- blog post comment end -->
                                 </div>
                             </div>
@@ -763,1028 +1016,27 @@
                                 <div class="section-title">
                                     <div class="section-cont-title">
                                         <h2>
-                                            <span>Related product</span>
+                                        <span>Related product</span>
                                         </h2>
                                     </div>
                                 </div>
                             </div>
                             <!-- related-pro. title end -->
                             <!-- related-pro. slider start -->
-                            <div class="related-slider">
-                                <div class="product-related-slider swiper" id="related-slider">
-                                    <div class="swiper-wrapper">
-                                        <div class="swiper-slide">
-                                            <!-- product start -->
-                                            <div class="single-product-wrap">
-                                                <!-- product-img start -->
-                                                <div class="product-image">
-                                                    <a href="product-template2.html" class="pro-img">
-                                                        <img src="img/product/p-1.jpg" class="img-fluid img1" alt="p-1">
-                                                        <img src="img/product/p-2.jpg" class="img-fluid img2" alt="p-2">
-                                                    </a>
-                                                    <!-- product-label start -->
-                                                    <!-- <div class="product-label">
-                                                            <span class="new-sale-title">New</span>
-                                                        </div> -->
-                                                    <!-- product-label end -->
-                                                    <!-- product-action start -->
-                                                    <div class="product-action">
-                                                        <a href="wishlist-product.html" class="wishlist-product">
-                                                            <span class="tooltip-text">Wishlist</span>
-                                                            <span class="wishlist-icon"><i
-                                                                    class="feather-heart"></i></span>
-                                                        </a>
-                                                        <a href="javascript:void(0)" class="add-to-cart">
-                                                            <span class="tooltip-text">Add to cart</span>
-                                                            <span class="cart-icon"><i
-                                                                    class="feather-shopping-bag"></i></span>
-                                                        </a>
-                                                        <a href="#quickview" class="quick-view" data-bs-toggle="modal"
-                                                            data-bs-target="#quickview">
-                                                            <span class="tooltip-text">Quickview</span>
-                                                            <span class="quickview-icon"><i
-                                                                    class="feather-eye"></i></span>
-                                                        </a>
-                                                    </div>
-                                                    <!-- product-action end -->
-                                                </div>
-                                                <!-- product-img end -->
-                                                <!-- product-content start -->
-                                                <div class="product-content">
-                                                    <!-- product-rating start-->
-                                                    <div class="product-rating">
-                                                        <span class="star-rating">
-                                                            <i class="far fa-star"></i>
-                                                            <i class="far fa-star"></i>
-                                                            <i class="far fa-star"></i>
-                                                            <i class="far fa-star"></i>
-                                                            <i class="far fa-star"></i>
-                                                        </span>
-                                                    </div>
-                                                    <!-- product-rating end -->
-                                                    <!-- product-title start -->
-                                                    <h6><a href="product-template2.html">Candy nut chocolate</a></h6>
-                                                    <!-- product-title end -->
-                                                    <!-- product-price start -->
-                                                    <div class="price-box">
-                                                        <span class="new-price">€11,00</span>
-                                                        <span class="old-price">€19,00</span>
-                                                    </div>
-                                                    <!-- product-price end -->
-                                                    <!-- product-action start -->
-                                                    <div class="product-action">
-                                                        <a href="wishlist-product.html" class="wishlist-product">
-                                                            <span class="tooltip-text">Wishlist</span>
-                                                            <span class="wishlist-icon"><i
-                                                                    class="feather-heart"></i></span>
-                                                        </a>
-                                                        <a href="javascript:void(0)" class="add-to-cart">
-                                                            <span class="tooltip-text">Add to cart</span>
-                                                            <span class="cart-icon"><i
-                                                                    class="feather-shopping-bag"></i></span>
-                                                        </a>
-                                                        <a href="#quickview" class="quick-view" data-bs-toggle="modal"
-                                                            data-bs-target="#quickview">
-                                                            <span class="tooltip-text">Quickview</span>
-                                                            <span class="quickview-icon"><i
-                                                                    class="feather-eye"></i></span>
-                                                        </a>
-                                                    </div>
-                                                    <!-- product-action end -->
-                                                </div>
-                                                <!-- product-content end -->
-                                            </div>
-                                            <!-- product end -->
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <!-- product start -->
-                                            <div class="single-product-wrap">
-                                                <!-- product-img start -->
-                                                <div class="product-image">
-                                                    <a href="product-template2.html" class="pro-img">
-                                                        <img src="img/product/p-3.jpg" class="img-fluid img1" alt="p-3">
-                                                        <img src="img/product/p-4.jpg" class="img-fluid img2" alt="p-4">
-                                                    </a>
-                                                    <!-- product-label start -->
-                                                    <!-- <div class="product-label">
-                                                            <span class="new-sale-title">New</span>
-                                                        </div> -->
-                                                    <!-- product-label end -->
-                                                    <!-- product-action start -->
-                                                    <div class="product-action">
-                                                        <a href="wishlist-product.html" class="wishlist-product">
-                                                            <span class="tooltip-text">Wishlist</span>
-                                                            <span class="wishlist-icon"><i
-                                                                    class="feather-heart"></i></span>
-                                                        </a>
-                                                        <a href="javascript:void(0)" class="add-to-cart">
-                                                            <span class="tooltip-text">Add to cart</span>
-                                                            <span class="cart-icon"><i
-                                                                    class="feather-shopping-bag"></i></span>
-                                                        </a>
-                                                        <a href="#quickview" class="quick-view" data-bs-toggle="modal"
-                                                            data-bs-target="#quickview">
-                                                            <span class="tooltip-text">Quickview</span>
-                                                            <span class="quickview-icon"><i
-                                                                    class="feather-eye"></i></span>
-                                                        </a>
-                                                    </div>
-                                                    <!-- product-action end -->
-                                                </div>
-                                                <!-- product-img end -->
-                                                <!-- product-content start -->
-                                                <div class="product-content">
-                                                    <!-- product-rating start-->
-                                                    <div class="product-rating">
-                                                        <span class="star-rating">
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                            <i class="fas fa-star"></i>
-                                                        </span>
-                                                    </div>
-                                                    <!-- product-rating end -->
-                                                    <!-- product-title start -->
-                                                    <h6><a href="product-template2.html">A bekery doughnuts</a></h6>
-                                                    <!-- product-title end -->
-                                                    <!-- product-price start -->
-                                                    <div class="price-box">
-                                                        <span class="new-price">€21,00</span>
-                                                        <span class="old-price">€25,00</span>
-                                                    </div>
-                                                    <!-- product-price end -->
-                                                    <!-- product-action start -->
-                                                    <div class="product-action">
-                                                        <a href="wishlist-product.html" class="wishlist-product">
-                                                            <span class="tooltip-text">Wishlist</span>
-                                                            <span class="wishlist-icon"><i
-                                                                    class="feather-heart"></i></span>
-                                                        </a>
-                                                        <a href="javascript:void(0)" class="add-to-cart">
-                                                            <span class="tooltip-text">Add to cart</span>
-                                                            <span class="cart-icon"><i
-                                                                    class="feather-shopping-bag"></i></span>
-                                                        </a>
-                                                        <a href="#quickview" class="quick-view" data-bs-toggle="modal"
-                                                            data-bs-target="#quickview">
-                                                            <span class="tooltip-text">Quickview</span>
-                                                            <span class="quickview-icon"><i
-                                                                    class="feather-eye"></i></span>
-                                                        </a>
-                                                    </div>
-                                                    <!-- product-action end -->
-                                                </div>
-                                                <!-- product-content end -->
-                                            </div>
-                                            <!-- product end -->
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <!-- product start -->
-                                            <div class="single-product-wrap">
-                                                <!-- product-img start -->
-                                                <div class="product-image">
-                                                    <a href="product-template2.html" class="pro-img">
-                                                        <img src="img/product/p-5.jpg" class="img-fluid img1" alt="p-5">
-                                                        <img src="img/product/p-6.jpg" class="img-fluid img2" alt="p-6">
-                                                    </a>
-                                                    <!-- product-label start -->
-                                                    <!-- <div class="product-label">
-                                                            <span class="new-sale-title">New</span>
-                                                        </div> -->
-                                                    <!-- product-label end -->
-                                                    <!-- product-action start -->
-                                                    <div class="product-action">
-                                                        <a href="wishlist-product.html" class="wishlist-product">
-                                                            <span class="tooltip-text">Wishlist</span>
-                                                            <span class="wishlist-icon"><i
-                                                                    class="feather-heart"></i></span>
-                                                        </a>
-                                                        <a href="javascript:void(0)" class="add-to-cart">
-                                                            <span class="tooltip-text">Add to cart</span>
-                                                            <span class="cart-icon"><i
-                                                                    class="feather-shopping-bag"></i></span>
-                                                        </a>
-                                                        <a href="#quickview" class="quick-view" data-bs-toggle="modal"
-                                                            data-bs-target="#quickview">
-                                                            <span class="tooltip-text">Quickview</span>
-                                                            <span class="quickview-icon"><i
-                                                                    class="feather-eye"></i></span>
-                                                        </a>
-                                                    </div>
-                                                    <!-- product-action end -->
-                                                </div>
-                                                <!-- product-img end -->
-                                                <!-- product-content start -->
-                                                <div class="product-content">
-                                                    <!-- product-rating start-->
-                                                    <div class="product-rating">
-                                                        <span class="star-rating">
-                                                            <i class="far fa-star"></i>
-                                                            <i class="far fa-star"></i>
-                                                            <i class="far fa-star"></i>
-                                                            <i class="far fa-star"></i>
-                                                            <i class="far fa-star"></i>
-                                                        </span>
-                                                    </div>
-                                                    <!-- product-rating end -->
-                                                    <!-- product-title start -->
-                                                    <h6><a href="product-template2.html">Fresh bread toast</a></h6>
-                                                    <!-- product-title end -->
-                                                    <!-- product-price start -->
-                                                    <div class="price-box">
-                                                        <span class="new-price">€24,00</span>
-                                                        <span class="old-price">€29,00</span>
-                                                    </div>
-                                                    <!-- product-price end -->
-                                                    <!-- product-action start -->
-                                                    <div class="product-action">
-                                                        <a href="wishlist-product.html" class="wishlist-product">
-                                                            <span class="tooltip-text">Wishlist</span>
-                                                            <span class="wishlist-icon"><i
-                                                                    class="feather-heart"></i></span>
-                                                        </a>
-                                                        <a href="javascript:void(0)" class="add-to-cart">
-                                                            <span class="tooltip-text">Add to cart</span>
-                                                            <span class="cart-icon"><i
-                                                                    class="feather-shopping-bag"></i></span>
-                                                        </a>
-                                                        <a href="#quickview" class="quick-view" data-bs-toggle="modal"
-                                                            data-bs-target="#quickview">
-                                                            <span class="tooltip-text">Quickview</span>
-                                                            <span class="quickview-icon"><i
-                                                                    class="feather-eye"></i></span>
-                                                        </a>
-                                                    </div>
-                                                    <!-- product-action end -->
-                                                </div>
-                                                <!-- product-content end -->
-                                            </div>
-                                            <!-- product end -->
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <!-- product start -->
-                                            <div class="single-product-wrap">
-                                                <!-- product-img start -->
-                                                <div class="product-image">
-                                                    <a href="product-template2.html" class="pro-img">
-                                                        <img src="img/product/p-7.jpg" class="img-fluid img1" alt="p-7">
-                                                        <img src="img/product/p-8.jpg" class="img-fluid img2" alt="p-8">
-                                                    </a>
-                                                    <!-- product-label start -->
-                                                    <!-- <div class="product-label">
-                                                            <span class="new-sale-title">New</span>
-                                                        </div> -->
-                                                    <!-- product-label end -->
-                                                    <!-- product-action start -->
-                                                    <div class="product-action">
-                                                        <a href="wishlist-product.html" class="wishlist-product">
-                                                            <span class="tooltip-text">Wishlist</span>
-                                                            <span class="wishlist-icon"><i
-                                                                    class="feather-heart"></i></span>
-                                                        </a>
-                                                        <a href="javascript:void(0)" class="add-to-cart">
-                                                            <span class="tooltip-text">Add to cart</span>
-                                                            <span class="cart-icon"><i
-                                                                    class="feather-shopping-bag"></i></span>
-                                                        </a>
-                                                        <a href="#quickview" class="quick-view" data-bs-toggle="modal"
-                                                            data-bs-target="#quickview">
-                                                            <span class="tooltip-text">Quickview</span>
-                                                            <span class="quickview-icon"><i
-                                                                    class="feather-eye"></i></span>
-                                                        </a>
-                                                    </div>
-                                                    <!-- product-action end -->
-                                                </div>
-                                                <!-- product-img end -->
-                                                <!-- product-content start -->
-                                                <div class="product-content">
-                                                    <!-- product-rating start-->
-                                                    <div class="product-rating">
-                                                        <span class="star-rating">
-                                                            <i class="far fa-star"></i>
-                                                            <i class="far fa-star"></i>
-                                                            <i class="far fa-star"></i>
-                                                            <i class="far fa-star"></i>
-                                                            <i class="far fa-star"></i>
-                                                        </span>
-                                                    </div>
-                                                    <!-- product-rating end -->
-                                                    <!-- product-title start -->
-                                                    <h6><a href="product-template2.html">Free sugar toast</a></h6>
-                                                    <!-- product-title end -->
-                                                    <!-- product-price start -->
-                                                    <div class="price-box">
-                                                        <span class="new-price">€25,00</span>
-                                                        <span class="old-price">€45,00</span>
-                                                    </div>
-                                                    <!-- product-price end -->
-                                                    <!-- product-action start -->
-                                                    <div class="product-action">
-                                                        <a href="wishlist-product.html" class="wishlist-product">
-                                                            <span class="tooltip-text">Wishlist</span>
-                                                            <span class="wishlist-icon"><i
-                                                                    class="feather-heart"></i></span>
-                                                        </a>
-                                                        <a href="javascript:void(0)" class="add-to-cart">
-                                                            <span class="tooltip-text">Add to cart</span>
-                                                            <span class="cart-icon"><i
-                                                                    class="feather-shopping-bag"></i></span>
-                                                        </a>
-                                                        <a href="#quickview" class="quick-view" data-bs-toggle="modal"
-                                                            data-bs-target="#quickview">
-                                                            <span class="tooltip-text">Quickview</span>
-                                                            <span class="quickview-icon"><i
-                                                                    class="feather-eye"></i></span>
-                                                        </a>
-                                                    </div>
-                                                    <!-- product-action end -->
-                                                </div>
-                                                <!-- product-content end -->
-                                            </div>
-                                            <!-- product end -->
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <!-- product start -->
-                                            <div class="single-product-wrap">
-                                                <!-- product-img start -->
-                                                <div class="product-image">
-                                                    <a href="product-template2.html" class="pro-img">
-                                                        <img src="img/product/p-9.jpg" class="img-fluid img1" alt="p-9">
-                                                        <img src="img/product/p-10.jpg" class="img-fluid img2"
-                                                            alt="p-10">
-                                                    </a>
-                                                    <!-- product-label start -->
-                                                    <!-- <div class="product-label">
-                                                            <span class="new-sale-title">New</span>
-                                                        </div> -->
-                                                    <!-- product-label end -->
-                                                    <!-- product-action start -->
-                                                    <div class="product-action">
-                                                        <a href="wishlist-product.html" class="wishlist-product">
-                                                            <span class="tooltip-text">Wishlist</span>
-                                                            <span class="wishlist-icon"><i
-                                                                    class="feather-heart"></i></span>
-                                                        </a>
-                                                        <a href="javascript:void(0)" class="add-to-cart">
-                                                            <span class="tooltip-text">Add to cart</span>
-                                                            <span class="cart-icon"><i
-                                                                    class="feather-shopping-bag"></i></span>
-                                                        </a>
-                                                        <a href="#quickview" class="quick-view" data-bs-toggle="modal"
-                                                            data-bs-target="#quickview">
-                                                            <span class="tooltip-text">Quickview</span>
-                                                            <span class="quickview-icon"><i
-                                                                    class="feather-eye"></i></span>
-                                                        </a>
-                                                    </div>
-                                                    <!-- product-action end -->
-                                                </div>
-                                                <!-- product-img end -->
-                                                <!-- product-content start -->
-                                                <div class="product-content">
-                                                    <!-- product-rating start-->
-                                                    <div class="product-rating">
-                                                        <span class="star-rating">
-                                                            <i class="far fa-star"></i>
-                                                            <i class="far fa-star"></i>
-                                                            <i class="far fa-star"></i>
-                                                            <i class="far fa-star"></i>
-                                                            <i class="far fa-star"></i>
-                                                        </span>
-                                                    </div>
-                                                    <!-- product-rating end -->
-                                                    <!-- product-title start -->
-                                                    <h6><a href="product-template2.html">The bread a fresh</a></h6>
-                                                    <!-- product-title end -->
-                                                    <!-- product-price start -->
-                                                    <div class="price-box">
-                                                        <span class="new-price">€25,00</span>
-                                                        <span class="old-price">€35,00</span>
-                                                    </div>
-                                                    <!-- product-price end -->
-                                                    <!-- product-action start -->
-                                                    <div class="product-action">
-                                                        <a href="wishlist-product.html" class="wishlist-product">
-                                                            <span class="tooltip-text">Wishlist</span>
-                                                            <span class="wishlist-icon"><i
-                                                                    class="feather-heart"></i></span>
-                                                        </a>
-                                                        <a href="javascript:void(0)" class="add-to-cart">
-                                                            <span class="tooltip-text">Add to cart</span>
-                                                            <span class="cart-icon"><i
-                                                                    class="feather-shopping-bag"></i></span>
-                                                        </a>
-                                                        <a href="#quickview" class="quick-view" data-bs-toggle="modal"
-                                                            data-bs-target="#quickview">
-                                                            <span class="tooltip-text">Quickview</span>
-                                                            <span class="quickview-icon"><i
-                                                                    class="feather-eye"></i></span>
-                                                        </a>
-                                                    </div>
-                                                    <!-- product-action end -->
-                                                </div>
-                                                <!-- product-content end -->
-                                            </div>
-                                            <!-- product end -->
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <!-- product start -->
-                                            <div class="single-product-wrap">
-                                                <!-- product-img start -->
-                                                <div class="product-image">
-                                                    <a href="product-template2.html" class="pro-img">
-                                                        <img src="img/product/p-11.jpg" class="img-fluid img1"
-                                                            alt="p-11">
-                                                        <img src="img/product/p-12.jpg" class="img-fluid img2"
-                                                            alt="p-12">
-                                                    </a>
-                                                    <!-- product-label start -->
-                                                    <!-- <div class="product-label">
-                                                            <span class="new-sale-title">New</span>
-                                                        </div> -->
-                                                    <!-- product-label end -->
-                                                    <!-- product-action start -->
-                                                    <div class="product-action">
-                                                        <a href="wishlist-product.html" class="wishlist-product">
-                                                            <span class="tooltip-text">Wishlist</span>
-                                                            <span class="wishlist-icon"><i
-                                                                    class="feather-heart"></i></span>
-                                                        </a>
-                                                        <a href="javascript:void(0)" class="add-to-cart">
-                                                            <span class="tooltip-text">Add to cart</span>
-                                                            <span class="cart-icon"><i
-                                                                    class="feather-shopping-bag"></i></span>
-                                                        </a>
-                                                        <a href="#quickview" class="quick-view" data-bs-toggle="modal"
-                                                            data-bs-target="#quickview">
-                                                            <span class="tooltip-text">Quickview</span>
-                                                            <span class="quickview-icon"><i
-                                                                    class="feather-eye"></i></span>
-                                                        </a>
-                                                    </div>
-                                                    <!-- product-action end -->
-                                                </div>
-                                                <!-- product-img end -->
-                                                <!-- product-content start -->
-                                                <div class="product-content">
-                                                    <!-- product-rating start-->
-                                                    <div class="product-rating">
-                                                        <span class="star-rating">
-                                                            <i class="far fa-star"></i>
-                                                            <i class="far fa-star"></i>
-                                                            <i class="far fa-star"></i>
-                                                            <i class="far fa-star"></i>
-                                                            <i class="far fa-star"></i>
-                                                        </span>
-                                                    </div>
-                                                    <!-- product-rating end -->
-                                                    <!-- product-title start -->
-                                                    <h6><a href="product-template2.html">Jamun fruit pastry</a></h6>
-                                                    <!-- product-title end -->
-                                                    <!-- product-price start -->
-                                                    <div class="price-box">
-                                                        <span class="new-price">€25,00</span>
-                                                        <span class="old-price">€35,00</span>
-                                                    </div>
-                                                    <!-- product-price end -->
-                                                    <!-- product-action start -->
-                                                    <div class="product-action">
-                                                        <a href="wishlist-product.html" class="wishlist-product">
-                                                            <span class="tooltip-text">Wishlist</span>
-                                                            <span class="wishlist-icon"><i
-                                                                    class="feather-heart"></i></span>
-                                                        </a>
-                                                        <a href="javascript:void(0)" class="add-to-cart">
-                                                            <span class="tooltip-text">Add to cart</span>
-                                                            <span class="cart-icon"><i
-                                                                    class="feather-shopping-bag"></i></span>
-                                                        </a>
-                                                        <a href="#quickview" class="quick-view" data-bs-toggle="modal"
-                                                            data-bs-target="#quickview">
-                                                            <span class="tooltip-text">Quickview</span>
-                                                            <span class="quickview-icon"><i
-                                                                    class="feather-eye"></i></span>
-                                                        </a>
-                                                    </div>
-                                                    <!-- product-action end -->
-                                                </div>
-                                                <!-- product-content end -->
-                                            </div>
-                                            <!-- product end -->
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <!-- product start -->
-                                            <div class="single-product-wrap">
-                                                <!-- product-img start -->
-                                                <div class="product-image">
-                                                    <a href="product-template2.html" class="pro-img">
-                                                        <img src="img/product/p-13.jpg" class="img-fluid img1"
-                                                            alt="p-13">
-                                                        <img src="img/product/p-14.jpg" class="img-fluid img2"
-                                                            alt="p-14">
-                                                    </a>
-                                                    <!-- product-label start -->
-                                                    <!-- <div class="product-label">
-                                                            <span class="new-sale-title">New</span>
-                                                        </div> -->
-                                                    <!-- product-label end -->
-                                                    <!-- product-action start -->
-                                                    <div class="product-action">
-                                                        <a href="wishlist-product.html" class="wishlist-product">
-                                                            <span class="tooltip-text">Wishlist</span>
-                                                            <span class="wishlist-icon"><i
-                                                                    class="feather-heart"></i></span>
-                                                        </a>
-                                                        <a href="javascript:void(0)" class="add-to-cart">
-                                                            <span class="tooltip-text">Add to cart</span>
-                                                            <span class="cart-icon"><i
-                                                                    class="feather-shopping-bag"></i></span>
-                                                        </a>
-                                                        <a href="#quickview" class="quick-view" data-bs-toggle="modal"
-                                                            data-bs-target="#quickview">
-                                                            <span class="tooltip-text">Quickview</span>
-                                                            <span class="quickview-icon"><i
-                                                                    class="feather-eye"></i></span>
-                                                        </a>
-                                                    </div>
-                                                    <!-- product-action end -->
-                                                </div>
-                                                <!-- product-img end -->
-                                                <!-- product-content start -->
-                                                <div class="product-content">
-                                                    <!-- product-rating start-->
-                                                    <div class="product-rating">
-                                                        <span class="star-rating">
-                                                            <i class="far fa-star"></i>
-                                                            <i class="far fa-star"></i>
-                                                            <i class="far fa-star"></i>
-                                                            <i class="far fa-star"></i>
-                                                            <i class="far fa-star"></i>
-                                                        </span>
-                                                    </div>
-                                                    <!-- product-rating end -->
-                                                    <!-- product-title start -->
-                                                    <h6><a href="product-template2.html">Sandwich olka bread</a></h6>
-                                                    <!-- product-title end -->
-                                                    <!-- product-price start -->
-                                                    <div class="price-box">
-                                                        <span class="new-price">€31,00</span>
-                                                        <span class="old-price">€39,00</span>
-                                                    </div>
-                                                    <!-- product-price end -->
-                                                    <!-- product-action start -->
-                                                    <div class="product-action">
-                                                        <a href="wishlist-product.html" class="wishlist-product">
-                                                            <span class="tooltip-text">Wishlist</span>
-                                                            <span class="wishlist-icon"><i
-                                                                    class="feather-heart"></i></span>
-                                                        </a>
-                                                        <a href="javascript:void(0)" class="add-to-cart">
-                                                            <span class="tooltip-text">Add to cart</span>
-                                                            <span class="cart-icon"><i
-                                                                    class="feather-shopping-bag"></i></span>
-                                                        </a>
-                                                        <a href="#quickview" class="quick-view" data-bs-toggle="modal"
-                                                            data-bs-target="#quickview">
-                                                            <span class="tooltip-text">Quickview</span>
-                                                            <span class="quickview-icon"><i
-                                                                    class="feather-eye"></i></span>
-                                                        </a>
-                                                    </div>
-                                                    <!-- product-action end -->
-                                                </div>
-                                                <!-- product-content end -->
-                                            </div>
-                                            <!-- product end -->
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <!-- product start -->
-                                            <div class="single-product-wrap">
-                                                <!-- product-img start -->
-                                                <div class="product-image">
-                                                    <a href="product-template2.html" class="pro-img">
-                                                        <img src="img/product/p-15.jpg" class="img-fluid img1"
-                                                            alt="p-15">
-                                                        <img src="img/product/p-16.jpg" class="img-fluid img2"
-                                                            alt="p-16">
-                                                    </a>
-                                                    <!-- product-label start -->
-                                                    <!-- <div class="product-label">
-                                                            <span class="new-sale-title">New</span>
-                                                        </div> -->
-                                                    <!-- product-label end -->
-                                                    <!-- product-action start -->
-                                                    <div class="product-action">
-                                                        <a href="wishlist-product.html" class="wishlist-product">
-                                                            <span class="tooltip-text">Wishlist</span>
-                                                            <span class="wishlist-icon"><i
-                                                                    class="feather-heart"></i></span>
-                                                        </a>
-                                                        <a href="javascript:void(0)" class="add-to-cart">
-                                                            <span class="tooltip-text">Add to cart</span>
-                                                            <span class="cart-icon"><i
-                                                                    class="feather-shopping-bag"></i></span>
-                                                        </a>
-                                                        <a href="#quickview" class="quick-view" data-bs-toggle="modal"
-                                                            data-bs-target="#quickview">
-                                                            <span class="tooltip-text">Quickview</span>
-                                                            <span class="quickview-icon"><i
-                                                                    class="feather-eye"></i></span>
-                                                        </a>
-                                                    </div>
-                                                    <!-- product-action end -->
-                                                </div>
-                                                <!-- product-img end -->
-                                                <!-- product-content start -->
-                                                <div class="product-content">
-                                                    <!-- product-rating start-->
-                                                    <div class="product-rating">
-                                                        <span class="star-rating">
-                                                            <i class="far fa-star"></i>
-                                                            <i class="far fa-star"></i>
-                                                            <i class="far fa-star"></i>
-                                                            <i class="far fa-star"></i>
-                                                            <i class="far fa-star"></i>
-                                                        </span>
-                                                    </div>
-                                                    <!-- product-rating end -->
-                                                    <!-- product-title start -->
-                                                    <h6><a href="product-template2.html">Healthy cake pastry</a></h6>
-                                                    <!-- product-title end -->
-                                                    <!-- product-price start -->
-                                                    <div class="price-box">
-                                                        <span class="new-price">€44,00</span>
-                                                        <span class="old-price">€49,00</span>
-                                                    </div>
-                                                    <!-- product-price end -->
-                                                    <!-- product-action start -->
-                                                    <div class="product-action">
-                                                        <a href="wishlist-product.html" class="wishlist-product">
-                                                            <span class="tooltip-text">Wishlist</span>
-                                                            <span class="wishlist-icon"><i
-                                                                    class="feather-heart"></i></span>
-                                                        </a>
-                                                        <a href="javascript:void(0)" class="add-to-cart">
-                                                            <span class="tooltip-text">Add to cart</span>
-                                                            <span class="cart-icon"><i
-                                                                    class="feather-shopping-bag"></i></span>
-                                                        </a>
-                                                        <a href="#quickview" class="quick-view" data-bs-toggle="modal"
-                                                            data-bs-target="#quickview">
-                                                            <span class="tooltip-text">Quickview</span>
-                                                            <span class="quickview-icon"><i
-                                                                    class="feather-eye"></i></span>
-                                                        </a>
-                                                    </div>
-                                                    <!-- product-action end -->
-                                                </div>
-                                                <!-- product-content end -->
-                                            </div>
-                                            <!-- product end -->
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <!-- product start -->
-                                            <div class="single-product-wrap">
-                                                <!-- product-img start -->
-                                                <div class="product-image">
-                                                    <a href="product-template2.html" class="pro-img">
-                                                        <img src="img/product/p-17.jpg" class="img-fluid img1"
-                                                            alt="p-17">
-                                                        <img src="img/product/p-18.jpg" class="img-fluid img2"
-                                                            alt="p-18">
-                                                    </a>
-                                                    <!-- product-label start -->
-                                                    <!-- <div class="product-label">
-                                                            <span class="new-sale-title">New</span>
-                                                        </div> -->
-                                                    <!-- product-label end -->
-                                                    <!-- product-action start -->
-                                                    <div class="product-action">
-                                                        <a href="wishlist-product.html" class="wishlist-product">
-                                                            <span class="tooltip-text">Wishlist</span>
-                                                            <span class="wishlist-icon"><i
-                                                                    class="feather-heart"></i></span>
-                                                        </a>
-                                                        <a href="javascript:void(0)" class="add-to-cart">
-                                                            <span class="tooltip-text">Add to cart</span>
-                                                            <span class="cart-icon"><i
-                                                                    class="feather-shopping-bag"></i></span>
-                                                        </a>
-                                                        <a href="#quickview" class="quick-view" data-bs-toggle="modal"
-                                                            data-bs-target="#quickview">
-                                                            <span class="tooltip-text">Quickview</span>
-                                                            <span class="quickview-icon"><i
-                                                                    class="feather-eye"></i></span>
-                                                        </a>
-                                                    </div>
-                                                    <!-- product-action end -->
-                                                </div>
-                                                <!-- product-img end -->
-                                                <!-- product-content start -->
-                                                <div class="product-content">
-                                                    <!-- product-rating start-->
-                                                    <div class="product-rating">
-                                                        <span class="star-rating">
-                                                            <i class="far fa-star"></i>
-                                                            <i class="far fa-star"></i>
-                                                            <i class="far fa-star"></i>
-                                                            <i class="far fa-star"></i>
-                                                            <i class="far fa-star"></i>
-                                                        </span>
-                                                    </div>
-                                                    <!-- product-rating end -->
-                                                    <!-- product-title start -->
-                                                    <h6><a href="product-template2.html">Creamy for rasmalai</a></h6>
-                                                    <!-- product-title end -->
-                                                    <!-- product-price start -->
-                                                    <div class="price-box">
-                                                        <span class="new-price">€44,00</span>
-                                                        <span class="old-price">€49,00</span>
-                                                    </div>
-                                                    <!-- product-price end -->
-                                                    <!-- product-action start -->
-                                                    <div class="product-action">
-                                                        <a href="wishlist-product.html" class="wishlist-product">
-                                                            <span class="tooltip-text">Wishlist</span>
-                                                            <span class="wishlist-icon"><i
-                                                                    class="feather-heart"></i></span>
-                                                        </a>
-                                                        <a href="javascript:void(0)" class="add-to-cart">
-                                                            <span class="tooltip-text">Add to cart</span>
-                                                            <span class="cart-icon"><i
-                                                                    class="feather-shopping-bag"></i></span>
-                                                        </a>
-                                                        <a href="#quickview" class="quick-view" data-bs-toggle="modal"
-                                                            data-bs-target="#quickview">
-                                                            <span class="tooltip-text">Quickview</span>
-                                                            <span class="quickview-icon"><i
-                                                                    class="feather-eye"></i></span>
-                                                        </a>
-                                                    </div>
-                                                    <!-- product-action end -->
-                                                </div>
-                                                <!-- product-content end -->
-                                            </div>
-                                            <!-- product end -->
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <!-- product start -->
-                                            <div class="single-product-wrap">
-                                                <!-- product-img start -->
-                                                <div class="product-image">
-                                                    <a href="product-template2.html" class="pro-img">
-                                                        <img src="img/product/p-19.jpg" class="img-fluid img1"
-                                                            alt="p-19">
-                                                        <img src="img/product/p-20.jpg" class="img-fluid img2"
-                                                            alt="p-20">
-                                                    </a>
-                                                    <!-- product-label start -->
-                                                    <!-- <div class="product-label">
-                                                            <span class="new-sale-title">New</span>
-                                                        </div> -->
-                                                    <!-- product-label end -->
-                                                    <!-- product-action start -->
-                                                    <div class="product-action">
-                                                        <a href="wishlist-product.html" class="wishlist-product">
-                                                            <span class="tooltip-text">Wishlist</span>
-                                                            <span class="wishlist-icon"><i
-                                                                    class="feather-heart"></i></span>
-                                                        </a>
-                                                        <a href="javascript:void(0)" class="add-to-cart">
-                                                            <span class="tooltip-text">Add to cart</span>
-                                                            <span class="cart-icon"><i
-                                                                    class="feather-shopping-bag"></i></span>
-                                                        </a>
-                                                        <a href="#quickview" class="quick-view" data-bs-toggle="modal"
-                                                            data-bs-target="#quickview">
-                                                            <span class="tooltip-text">Quickview</span>
-                                                            <span class="quickview-icon"><i
-                                                                    class="feather-eye"></i></span>
-                                                        </a>
-                                                    </div>
-                                                    <!-- product-action end -->
-                                                </div>
-                                                <!-- product-img end -->
-                                                <!-- product-content start -->
-                                                <div class="product-content">
-                                                    <!-- product-rating start-->
-                                                    <div class="product-rating">
-                                                        <span class="star-rating">
-                                                            <i class="far fa-star"></i>
-                                                            <i class="far fa-star"></i>
-                                                            <i class="far fa-star"></i>
-                                                            <i class="far fa-star"></i>
-                                                            <i class="far fa-star"></i>
-                                                        </span>
-                                                    </div>
-                                                    <!-- product-rating end -->
-                                                    <!-- product-title start -->
-                                                    <h6><a href="product-template2.html">Red sugar biscuit</a></h6>
-                                                    <!-- product-title end -->
-                                                    <!-- product-price start -->
-                                                    <div class="price-box">
-                                                        <span class="new-price">€61,00</span>
-                                                    </div>
-                                                    <!-- product-price end -->
-                                                    <!-- product-action start -->
-                                                    <div class="product-action">
-                                                        <a href="wishlist-product.html" class="wishlist-product">
-                                                            <span class="tooltip-text">Wishlist</span>
-                                                            <span class="wishlist-icon"><i
-                                                                    class="feather-heart"></i></span>
-                                                        </a>
-                                                        <a href="javascript:void(0)" class="add-to-cart">
-                                                            <span class="tooltip-text">Add to cart</span>
-                                                            <span class="cart-icon"><i
-                                                                    class="feather-shopping-bag"></i></span>
-                                                        </a>
-                                                        <a href="#quickview" class="quick-view" data-bs-toggle="modal"
-                                                            data-bs-target="#quickview">
-                                                            <span class="tooltip-text">Quickview</span>
-                                                            <span class="quickview-icon"><i
-                                                                    class="feather-eye"></i></span>
-                                                        </a>
-                                                    </div>
-                                                    <!-- product-action end -->
-                                                </div>
-                                                <!-- product-content end -->
-                                            </div>
-                                            <!-- product end -->
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <!-- product start -->
-                                            <div class="single-product-wrap">
-                                                <!-- product-img start -->
-                                                <div class="product-image">
-                                                    <a href="product-template2.html" class="pro-img">
-                                                        <img src="img/product/p-21.jpg" class="img-fluid img1"
-                                                            alt="p-21">
-                                                        <img src="img/product/p-22.jpg" class="img-fluid img2"
-                                                            alt="p-22">
-                                                    </a>
-                                                    <!-- product-label start -->
-                                                    <!-- <div class="product-label">
-                                                            <span class="new-sale-title">New</span>
-                                                        </div> -->
-                                                    <!-- product-label end -->
-                                                    <!-- product-action start -->
-                                                    <div class="product-action">
-                                                        <a href="wishlist-product.html" class="wishlist-product">
-                                                            <span class="tooltip-text">Wishlist</span>
-                                                            <span class="wishlist-icon"><i
-                                                                    class="feather-heart"></i></span>
-                                                        </a>
-                                                        <a href="javascript:void(0)" class="add-to-cart">
-                                                            <span class="tooltip-text">Add to cart</span>
-                                                            <span class="cart-icon"><i
-                                                                    class="feather-shopping-bag"></i></span>
-                                                        </a>
-                                                        <a href="#quickview" class="quick-view" data-bs-toggle="modal"
-                                                            data-bs-target="#quickview">
-                                                            <span class="tooltip-text">Quickview</span>
-                                                            <span class="quickview-icon"><i
-                                                                    class="feather-eye"></i></span>
-                                                        </a>
-                                                    </div>
-                                                    <!-- product-action end -->
-                                                </div>
-                                                <!-- product-img end -->
-                                                <!-- product-content start -->
-                                                <div class="product-content">
-                                                    <!-- product-rating start-->
-                                                    <div class="product-rating">
-                                                        <span class="star-rating">
-                                                            <i class="far fa-star"></i>
-                                                            <i class="far fa-star"></i>
-                                                            <i class="far fa-star"></i>
-                                                            <i class="far fa-star"></i>
-                                                            <i class="far fa-star"></i>
-                                                        </span>
-                                                    </div>
-                                                    <!-- product-rating end -->
-                                                    <!-- product-title start -->
-                                                    <h6><a href="product-template2.html">Crackers for rasmalai</a></h6>
-                                                    <!-- product-title end -->
-                                                    <!-- product-price start -->
-                                                    <div class="price-box">
-                                                        <span class="new-price">€61,00</span>
-                                                        <span class="old-price">€69,00</span>
-                                                    </div>
-                                                    <!-- product-price end -->
-                                                    <!-- product-action start -->
-                                                    <div class="product-action">
-                                                        <a href="wishlist-product.html" class="wishlist-product">
-                                                            <span class="tooltip-text">Wishlist</span>
-                                                            <span class="wishlist-icon"><i
-                                                                    class="feather-heart"></i></span>
-                                                        </a>
-                                                        <a href="javascript:void(0)" class="add-to-cart">
-                                                            <span class="tooltip-text">Add to cart</span>
-                                                            <span class="cart-icon"><i
-                                                                    class="feather-shopping-bag"></i></span>
-                                                        </a>
-                                                        <a href="#quickview" class="quick-view" data-bs-toggle="modal"
-                                                            data-bs-target="#quickview">
-                                                            <span class="tooltip-text">Quickview</span>
-                                                            <span class="quickview-icon"><i
-                                                                    class="feather-eye"></i></span>
-                                                        </a>
-                                                    </div>
-                                                    <!-- product-action end -->
-                                                </div>
-                                                <!-- product-content end -->
-                                            </div>
-                                            <!-- product end -->
-                                        </div>
-                                        <div class="swiper-slide">
-                                            <!-- product start -->
-                                            <div class="single-product-wrap">
-                                                <!-- product-img start -->
-                                                <div class="product-image">
-                                                    <a href="product-template2.html" class="pro-img">
-                                                        <img src="img/product/p-1.jpg" class="img-fluid img1" alt="p-1">
-                                                        <img src="img/product/p-2.jpg" class="img-fluid img2" alt="p-2">
-                                                    </a>
-                                                    <!-- product-label start -->
-                                                    <!-- <div class="product-label">
-                                                            <span class="new-sale-title">New</span>
-                                                        </div> -->
-                                                    <!-- product-label end -->
-                                                    <!-- product-action start -->
-                                                    <div class="product-action">
-                                                        <a href="wishlist-product.html" class="wishlist-product">
-                                                            <span class="tooltip-text">Wishlist</span>
-                                                            <span class="wishlist-icon"><i
-                                                                    class="feather-heart"></i></span>
-                                                        </a>
-                                                        <a href="javascript:void(0)" class="add-to-cart">
-                                                            <span class="tooltip-text">Add to cart</span>
-                                                            <span class="cart-icon"><i
-                                                                    class="feather-shopping-bag"></i></span>
-                                                        </a>
-                                                        <a href="#quickview" class="quick-view" data-bs-toggle="modal"
-                                                            data-bs-target="#quickview">
-                                                            <span class="tooltip-text">Quickview</span>
-                                                            <span class="quickview-icon"><i
-                                                                    class="feather-eye"></i></span>
-                                                        </a>
-                                                    </div>
-                                                    <!-- product-action end -->
-                                                </div>
-                                                <!-- product-img end -->
-                                                <!-- product-content start -->
-                                                <div class="product-content">
-                                                    <!-- product-rating start-->
-                                                    <div class="product-rating">
-                                                        <span class="star-rating">
-                                                            <i class="far fa-star"></i>
-                                                            <i class="far fa-star"></i>
-                                                            <i class="far fa-star"></i>
-                                                            <i class="far fa-star"></i>
-                                                            <i class="far fa-star"></i>
-                                                        </span>
-                                                    </div>
-                                                    <!-- product-rating end -->
-                                                    <!-- product-title start -->
-                                                    <h6><a href="product-template2.html">Fresh healthy doughnuts</a>
-                                                    </h6>
-                                                    <!-- product-title end -->
-                                                    <!-- product-price start -->
-                                                    <div class="price-box">
-                                                        <span class="new-price">€69,00</span>
-                                                        <span class="old-price">€89,00</span>
-                                                    </div>
-                                                    <!-- product-price end -->
-                                                    <!-- product-action start -->
-                                                    <div class="product-action">
-                                                        <a href="wishlist-product.html" class="wishlist-product">
-                                                            <span class="tooltip-text">Wishlist</span>
-                                                            <span class="wishlist-icon"><i
-                                                                    class="feather-heart"></i></span>
-                                                        </a>
-                                                        <a href="javascript:void(0)" class="add-to-cart">
-                                                            <span class="tooltip-text">Add to cart</span>
-                                                            <span class="cart-icon"><i
-                                                                    class="feather-shopping-bag"></i></span>
-                                                        </a>
-                                                        <a href="#quickview" class="quick-view" data-bs-toggle="modal"
-                                                            data-bs-target="#quickview">
-                                                            <span class="tooltip-text">Quickview</span>
-                                                            <span class="quickview-icon"><i
-                                                                    class="feather-eye"></i></span>
-                                                        </a>
-                                                    </div>
-                                                    <!-- product-action end -->
-                                                </div>
-                                                <!-- product-content end -->
-                                            </div>
-                                            <!-- product end -->
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <!-- Swiper -->
+<div class="related-slider">
+<div class="product-related-slider swiper" id="related-slider">
+  <div class="swiper-wrapper">
+    <!-- Products will be inserted here by JavaScript -->
+  </div>
+  <!-- Add Navigation -->
+  <div class="swiper-button-next"></div>
+  <div class="swiper-button-prev"></div>
+  <!-- Optional Pagination -->
+  <div class="swiper-pagination"></div>
+</div>
+</div>
+
                             <!-- related-pro. slider start -->
                         </div>
                     </div>
@@ -2901,7 +2153,7 @@
                 let createdAt = new Date().toISOString(); // Format date to ISO string (e.g., "2024-09-09T12:34:56.789Z")
 
                 // Set the URL for the API endpoint
-                let URL = `https://localhost:44321/api/productDetails/CommentOnProduct`;
+                let URL = `https://localhost:44325/api/productDetails/CommentOnProduct`;
 
                 // Get the form and create a FormData object
                 let form = document.getElementById("CommentForm");
@@ -2943,7 +2195,7 @@
         //             async function BuyPro() {
         //   localStorage.setItem("productId", 1);
         //   var id = localStorage.getItem("productId");
-        //   let url = `https://localhost:44321/api/productDetails/GetOneProductByID/${id}`;
+        //   let url = `https://localhost:44325/api/productDetails/GetOneProductByID/${id}`;
 
         //   let response = await fetch(url);
         //   let data = await response.json();
@@ -2965,7 +2217,6 @@
         ////////////////////////////////////////////////////////////////////////////////Break////////////////////////////////////////////////////////////////////////////////
 
         async function Buy() {
-            debugger
             var NewQuantity = document.getElementById("quantity").value;
             var id = localStorage.getItem("productId");
 

@@ -15,7 +15,7 @@ public partial class Order
 
     public string? OrderStatus { get; set; }
 
-    public DateOnly? OrderDate { get; set; }
+    public DateTime? OrderDate { get; set; }
 
     public string? Comment { get; set; }
 

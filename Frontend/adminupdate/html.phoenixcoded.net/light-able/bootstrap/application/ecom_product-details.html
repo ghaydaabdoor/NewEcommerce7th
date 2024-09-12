@@ -146,8 +146,16 @@
             <span class="pc-micon">
               <i class="ph-duotone ph-calendar-blank"></i>
             </span>
-            <span class="pc-mtext">Calendar</span></a
+            <span class="pc-mtext">Add New Vouchers</span></a
           >
+          <li class="pc-item">
+            <a href="ShowVouchers.html" class="pc-link">
+              <span class="pc-micon">
+                <i class="ph-duotone ph-calendar-blank"></i>
+              </span>
+              <span class="pc-mtext">ShowVouchers</span></a
+            >
+          </li>
         </li>
         <!-- <li class="pc-item">
           <a href="chat.html" class="pc-link">
@@ -157,33 +165,31 @@
             <span class="pc-mtext">Chat</span></a
           >
         </li> -->
-        <li class="pc-item pc-hasmenu">
-          <a href="#!" class="pc-link">
-            <span class="pc-micon">
-              <i class="ph-duotone ph-image"></i>
-            </span>
-            <span class="pc-mtext">Gallery</span><span class="pc-arrow"><i data-feather="chevron-right"></i></span
-          ></a>
-          <ul class="pc-submenu">
-            <li class="pc-item"><a class="pc-link" href="gallery-grid.html">Grid</a></li>
-            <!-- <li class="pc-item"><a class="pc-link" href="gallery-masonry.html">Masonry</a></li> -->
-          </ul>
+        <li class="pc-item">
+          <a class="pc-link" href="gallery-grid.html">Grid</a>
         </li>
-        <li class="pc-item pc-hasmenu">
-          <a href="#!" class="pc-link">
-            <span class="pc-micon">
-              <i class="ph-duotone ph-shopping-cart"></i>
-            </span>
-            <span class="pc-mtext">E-commerce</span><span class="pc-arrow"><i data-feather="chevron-right"></i></span
-          ></a>
-          <ul class="pc-submenu">
-            <li class="pc-item"><a class="pc-link" href="ecom_product.html">Product</a></li>
-            <li class="pc-item"><a class="pc-link" href="ecom_product-details.html">Product details</a></li>
-            <li class="pc-item"><a class="pc-link" href="ecom_product-list.html">Product List</a></li>
-            <li class="pc-item"><a class="pc-link" href="ecom_product-add.html">Add New Product</a></li>
-            <li class="pc-item"><a class="pc-link" href="ecom_checkout.html">Checkout</a></li>
-          </ul>
+        <li class="pc-item">
+          <a class="pc-link" href="ecom_product.html">Gategory</a>
         </li>
+        <li class="pc-item"></li>
+              <a class="pc-link" href="ecom_Category.html">Add New Category</a>
+            </li>
+        <li class="pc-item">
+          <a class="pc-link" href="ecom_product-details.html">Comments Controls</a>
+        </li>
+        <li class="pc-item">
+          <a class="pc-link" href="ecom_product-list.html">Product List</a>
+        </li>
+        <li class="pc-item">
+          <a class="pc-link" href="ecom_product-add.html">Add New Product</a>
+        </li>
+        <li class="pc-item">
+          <a class="pc-link" href="ecom_checkout.html">User's Orders</a>
+        </li>
+        <li class="pc-item">
+          <a class="pc-link" href="users.html">Users Information</a>
+        </li>
+        
         <!-- <li class="pc-item pc-hasmenu">
           <a href="#!" class="pc-link"
             ><span class="pc-micon"><i class="ph-duotone ph-lifebuoy"></i></span><span class="pc-mtext">Helpdesk</span
@@ -748,13 +754,7 @@
         > -->
 
       </ul>
-      <div class="card nav-action-card bg-brand-color-4">
-        <div class="card-body" style="background-image: url('https://html.phoenixcoded.net/light-able/bootstrap/assets/images/layout/nav-card-bg.svg')">
-          <h5 class="text-dark">Help Center</h5>
-          <p class="text-dark text-opacity-75">Please contact us for more questions.</p>
-          <a href="https://phoenixcoded.support-hub.io/" class="btn btn-primary" target="_blank">Go to help Center</a>
-        </div>
-      </div>
+      
     </div>
     <div class="card pc-user-card">
       <div class="card-body">
@@ -840,23 +840,9 @@
       >
         <i class="ph-duotone ph-magnifying-glass"></i>
       </a>
-      <div class="dropdown-menu pc-h-dropdown drp-search">
-        <form class="px-3">
-          <div class="mb-0 d-flex align-items-center">
-            <input type="search" class="form-control border-0 shadow-none" placeholder="Search..." />
-            <button class="btn btn-light-secondary btn-search">Search</button>
-          </div>
-        </form>
-      </div>
+   
     </li>
-    <li class="pc-h-item d-none d-md-inline-flex">
-      <form class="form-search">
-        <i class="ph-duotone ph-magnifying-glass icon-search"></i>
-        <input type="search" class="form-control" placeholder="Search..." />
 
-        <button class="btn btn-search" style="padding: 0"><kbd>ctrl+k</kbd></button>
-      </form>
-    </li>
   </ul>
 </div>
 <!-- [Mobile Media Block end] -->
@@ -1684,7 +1670,7 @@
 
               products.forEach(x => {
                   const row = `
-                      <tr>
+                      <tr id="commentROW-${x.commentId}">
                           <td><img src="${x.product.productImage || 'https://via.placeholder.com/100x100'}" alt="${x.product.productName}"></td>
                           <td>${x.product.productName}</td>
                           <td>${x.commentText}</td>
@@ -1699,24 +1685,31 @@
           } catch (error) {
               console.error('Error loading products:', error);
           }
+          var row= document.getElementById(`commentROW-${x.commentId}`);
       }
 
       async function accept(commentId) {
-          try {
-              const response = await fetch(`https://localhost:44325/api/Comment/approve/${commentId}`, {
-                  method: 'POST'
-              });
+    try {
+        const response = await fetch(`https://localhost:44325/api/Comment/approve/${commentId}`, {
+            method: 'POST'
+        });
 
-              if (response.ok) {
-                  alert('Comment approved successfully!');
-                  loadProducts(); // Reload the products after approving
-              } else {
-                  alert('Failed to approve the comment.');
-              }
-          } catch (error) {
-              console.error('Error approving comment:', error);
-          }
-      }
+        if (response.ok) {
+            alert('Comment approved successfully!');
+            
+            // Hide the row after approving the comment
+            const row = document.getElementById(`commentROW-${commentId}`);
+            if (row) {
+                row.style.display = 'none';
+            }
+        } else {
+            alert('Failed to approve the comment.');
+        }
+    } catch (error) {
+        console.error('Error approving comment:', error);
+    }
+}
+
 
       async function ignore(commentId) {
           try {

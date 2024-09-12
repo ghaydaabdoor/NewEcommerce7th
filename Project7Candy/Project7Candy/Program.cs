@@ -6,9 +6,7 @@ using Project7Candy.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-
-
-
+using Serilog;
 
 internal class Program
 {
@@ -35,6 +33,13 @@ internal class Program
            builder.AllowAnyHeader();
        }
        ));
+
+        Log.Logger = new LoggerConfiguration()
+      .WriteTo.Console()
+      .WriteTo.File("app.log", rollingInterval: RollingInterval.Day)
+      .CreateLogger();
+
+        builder.Host.UseSerilog();
 
         builder.Services.AddSingleton<IConverter, SynchronizedConverter>(provider =>
             new SynchronizedConverter(new PdfTools()));

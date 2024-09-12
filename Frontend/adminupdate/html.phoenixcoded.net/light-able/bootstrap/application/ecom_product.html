@@ -146,8 +146,16 @@
             <span class="pc-micon">
               <i class="ph-duotone ph-calendar-blank"></i>
             </span>
-            <span class="pc-mtext">Calendar</span></a
+            <span class="pc-mtext">Add New Vouchers</span></a
           >
+          <li class="pc-item">
+            <a href="ShowVouchers.html" class="pc-link">
+              <span class="pc-micon">
+                <i class="ph-duotone ph-calendar-blank"></i>
+              </span>
+              <span class="pc-mtext">ShowVouchers</span></a
+            >
+          </li>
         </li>
         <!-- <li class="pc-item">
           <a href="chat.html" class="pc-link">
@@ -157,33 +165,31 @@
             <span class="pc-mtext">Chat</span></a
           >
         </li> -->
-        <li class="pc-item pc-hasmenu">
-          <a href="#!" class="pc-link">
-            <span class="pc-micon">
-              <i class="ph-duotone ph-image"></i>
-            </span>
-            <span class="pc-mtext">Gallery</span><span class="pc-arrow"><i data-feather="chevron-right"></i></span
-          ></a>
-          <ul class="pc-submenu">
-            <li class="pc-item"><a class="pc-link" href="gallery-grid.html">Grid</a></li>
-            <!-- <li class="pc-item"><a class="pc-link" href="gallery-masonry.html">Masonry</a></li> -->
-          </ul>
+        <li class="pc-item">
+          <a class="pc-link" href="gallery-grid.html">Grid</a>
         </li>
-        <li class="pc-item pc-hasmenu">
-          <a href="#!" class="pc-link">
-            <span class="pc-micon">
-              <i class="ph-duotone ph-shopping-cart"></i>
-            </span>
-            <span class="pc-mtext">E-commerce</span><span class="pc-arrow"><i data-feather="chevron-right"></i></span
-          ></a>
-          <ul class="pc-submenu">
-            <li class="pc-item"><a class="pc-link" href="ecom_product.html">Product</a></li>
-            <li class="pc-item"><a class="pc-link" href="ecom_product-details.html">Product details</a></li>
-            <li class="pc-item"><a class="pc-link" href="ecom_product-list.html">Product List</a></li>
-            <li class="pc-item"><a class="pc-link" href="ecom_product-add.html">Add New Product</a></li>
-            <li class="pc-item"><a class="pc-link" href="ecom_checkout.html">Checkout</a></li>
-          </ul>
+        <li class="pc-item">
+          <a class="pc-link" href="ecom_product.html">Gategory</a>
         </li>
+        <li class="pc-item"></li>
+              <a class="pc-link" href="ecom_Category.html">Add New Category</a>
+            </li>
+        <li class="pc-item">
+          <a class="pc-link" href="ecom_product-details.html">Comments Controls</a>
+        </li>
+        <li class="pc-item">
+          <a class="pc-link" href="ecom_product-list.html">Product List</a>
+        </li>
+        <li class="pc-item">
+          <a class="pc-link" href="ecom_product-add.html">Add New Product</a>
+        </li>
+        <li class="pc-item">
+          <a class="pc-link" href="ecom_checkout.html">User's Orders</a>
+        </li>
+        <li class="pc-item">
+          <a class="pc-link" href="users.html">Users Information</a>
+        </li>
+        
         <!-- <li class="pc-item pc-hasmenu">
           <a href="#!" class="pc-link"
             ><span class="pc-micon"><i class="ph-duotone ph-lifebuoy"></i></span><span class="pc-mtext">Helpdesk</span
@@ -748,13 +754,7 @@
         > -->
 
       </ul>
-      <div class="card nav-action-card bg-brand-color-4">
-        <div class="card-body" style="background-image: url('https://html.phoenixcoded.net/light-able/bootstrap/assets/images/layout/nav-card-bg.svg')">
-          <h5 class="text-dark">Help Center</h5>
-          <p class="text-dark text-opacity-75">Please contact us for more questions.</p>
-          <a href="https://phoenixcoded.support-hub.io/" class="btn btn-primary" target="_blank">Go to help Center</a>
-        </div>
-      </div>
+    
     </div>
     <div class="card pc-user-card">
       <div class="card-body">
@@ -840,23 +840,9 @@
       >
         <i class="ph-duotone ph-magnifying-glass"></i>
       </a>
-      <div class="dropdown-menu pc-h-dropdown drp-search">
-        <form class="px-3">
-          <div class="mb-0 d-flex align-items-center">
-            <input type="search" class="form-control border-0 shadow-none" placeholder="Search..." />
-            <button class="btn btn-light-secondary btn-search">Search</button>
-          </div>
-        </form>
-      </div>
+  
     </li>
-    <li class="pc-h-item d-none d-md-inline-flex">
-      <form class="form-search">
-        <i class="ph-duotone ph-magnifying-glass icon-search"></i>
-        <input type="search" class="form-control" placeholder="Search..." />
-
-        <button class="btn btn-search" style="padding: 0"><kbd>ctrl+k</kbd></button>
-      </form>
-    </li>
+   
   </ul>
 </div>
 <!-- [Mobile Media Block end] -->
@@ -1344,21 +1330,22 @@
         <!-- [ breadcrumb ] end -->
 
 
-        <!-- [ Main Content ] start -->
-<!-- Navbar -->
+    
+<!-- [ Main Content ] end -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
   <a class="navbar-brand" href="#">Categories Management</a>
 </nav>
 
 <div class="container mt-5">
-  <!-- Add Category Button -->
+  <!-- Add Category Link -->
   <div class="row mb-4">
-      <div class="col">
-          <button type="button" id="addCategoryBtn" class="btn btn-success" data-toggle="modal" data-target="#addCategoryModal">
-              Add Category
-          </button>
-      </div>
+    <div class="col">
+      <a href="ecom_Category.html" class="btn btn-success">
+        Add Category
+      </a>
+    </div>
   </div>
+</div>
 
   <!-- Categories Table -->
   <div class="row" id="categoriesContainer">
@@ -1366,6 +1353,7 @@
   </div>
 </div>
 
+<!-- Add Category Modal -->
 <!-- Add Category Modal -->
 <div class="modal fade" id="addCategoryModal" tabindex="-1" role="dialog" aria-labelledby="addCategoryModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -1387,8 +1375,8 @@
                       <textarea class="form-control" id="categoryDescription" rows="3" required></textarea>
                   </div>
                   <div class="form-group">
-                    <label for="editCategoryImage">Category Image URL</label>
-                    <input type="url" class="form-control" id="editCategoryImage">
+                    <label for="categoryImage">Category Image URL</label>
+                    <input type="url" class="form-control" id="categoryImage">
                 </div>
                   <button type="submit" class="btn btn-primary">Add Category</button>
               </form>
@@ -1396,56 +1384,41 @@
       </div>
   </div>
 </div>
-      <!-- View Category Modal -->
 
-<div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="productModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="productModalLabel">Category Details</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+      <!-- View Category Modal -->
+<!-- Edit Category Modal -->
+<div class="modal fade" id="editCategoryModal" tabindex="-1" aria-labelledby="editCategoryModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="editCategoryModalLabel">Edit Category</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <form id="editCategoryForm">
+                  <input type="hidden" id="editCategoryId">
+                  <div class="mb-3">
+                      <label for="editCategoryName" class="form-label">Category Name</label>
+                      <input type="text" class="form-control" id="editCategoryName" required>
+                  </div>
+                  <div class="mb-3">
+                      <label for="editCategoryDescription" class="form-label">Description</label>
+                      <textarea class="form-control" id="editCategoryDescription"></textarea>
+                  </div>
+                  <div class="mb-3">
+                      <label for="editCategoryImage" class="form-label">Image URL</label>
+                      <input type="text" class="form-control" id="editCategoryImage">
+                  </div>
+                  <button type="submit" class="btn btn-primary">Update Category</button>
+              </form>
+          </div>
       </div>
-      <div class="modal-body" id="productDetails">
-        <!-- Category details will be dynamically inserted here -->
+  </div>
+</div>
       </div>
     </div>
   </div>
-</div>
-      <!-- Edit Category Modal -->
-      <div class="modal fade" id="editCategoryModal" tabindex="-1" role="dialog" aria-labelledby="editCategoryModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                  <div class="modal-header">
-                      <h5 class="modal-title" id="editCategoryModalLabel">Edit Category</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                      </button>
-                  </div>
-                  <div class="modal-body">
-                      <form id="editCategoryForm">
-                          <input type="hidden" id="editCategoryId">
-                          <div class="form-group">
-                              <label for="editCategoryName">Category Name</label>
-                              <input type="text" class="form-control" id="editCategoryName" required>
-                          </div>
-                          <div class="form-group">
-                              <label for="editCategoryDescription">Category Description</label>
-                              <textarea class="form-control" id="editCategoryDescription"></textarea>
-                          </div>
-                          <div class="form-group">
-                              <label for="editCategoryImage">Category Image URL</label>
-                              <input type="url" class="form-control" id="editCategoryImage">
-                          </div>
-                          <button type="submit" class="btn btn-primary">Save</button>
-                      </form>
-                  </div>
-              </div>
-          </div>
-      </div>
-<!-- [ Main Content ] end -->
-
+</div> 
 
         <!-- <div class="row">
            [ sample-page ] start -->
@@ -2422,134 +2395,107 @@
         </div>
       </div>
     </div>
+
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+   
     <script>
       document.addEventListener('DOMContentLoaded', async () => {
-          const categoriesContainer = document.getElementById('categoriesContainer');
-          const addCategoryForm = document.getElementById('addCategoryForm');
-
-          // Fetch and display all categories
-          async function loadCategories() {
-              const response = await fetch('https://localhost:44325/api/Categories/GetAllCategories');
-              if (response.ok) {
-                  const categories = await response.json();
-                  console.log(categories);
-                  categoriesContainer.innerHTML = '';
-
-                  categories.forEach(category => {
-                      const card = `
-                          <div class="col-md-4 mb-4">
-                              <div class="card">
-                                  <img src="${category.categoryImage}" class="card-img-top" alt="${category.categoryName}">
-                                  <div class="card-body">
-                                      <h5 class="card-title">${category.categoryName}</h5>
-                                      <p class="card-text">${category.categoryDescription || 'No description available'}</p>
-                                      <button class="btn btn-primary" onclick="viewCategory(${category.categoryId})">View</button>
-                                      <button class="btn btn-warning" onclick="editCategory(${category.categoryId})">Edit</button>
-                                      <button class="btn btn-danger" onclick="deleteCategory(${category.categoryId})">Delete</button>
-                                  </div>
-                              </div>
-                          </div>
-                      `;
-                      categoriesContainer.innerHTML += card;
-                  });
-              } else {
-                  console.error('Failed to fetch categories');
-              }
-          }
-
-          // Function to view category details
-          window.viewCategory = async function (categoryId) {
-              const response = await fetch(`https://localhost:44325/api/Categories/${categoryId}`);
-              if (response.ok) {
-                  const category = await response.json();
-                  const modalBody = document.getElementById('productDetails');
-                  modalBody.innerHTML = `
-                      <h5>Name: ${category.categoryName}</h5>
-                      <p>Description: ${category.categoryDescription || 'No description available'}</p>
-                      <p>Image URL: ${category.categoryImage}</p>
-                  `;
-                  $('#productModal').modal('show');
-              } else {
-                  alert('Failed to fetch category details.');
-              }
-          };
-
-          // Function to edit category
-          window.editCategory = async function (categoryId) {
-              const newCategoryName = prompt('Enter new category name:');
-              const newCategoryDescription = prompt('Enter new category description:');
-
-              const response = await fetch(`https://localhost:44325/api/Categories/${categoryId}`, {
-                  method: 'PUT',
-                  headers: {
-                      'Content-Type': 'application/json',
-                  },
-                  body: JSON.stringify({
-                      categoryId: categoryId,
-                      categoryName: newCategoryName,
-                      categoryDescription: newCategoryDescription
-                  })
-              });
-
-              if (response.ok) {
-                  alert('Category updated successfully.');
-                  loadCategories(); // Refresh the categories list
-              } else {
-                  alert('Failed to update category.');
-              }
-          };
-
-          // Function to delete category
-          window.deleteCategory = async function (categoryId) {
-              if (confirm('Are you sure you want to delete this category?')) {
-                  const response = await fetch(`https://localhost:44325/api/Categories/${categoryId}`, {
-                      method: 'DELETE'
-                  });
-                  
-                  if (response.ok) {
-                      alert('Category deleted successfully.');
-                      loadCategories(); // Refresh the categories list
-                  } else {
-                      alert('Failed to delete category.');
-                  }
-              }
-          };
-
-          // Add Category form submission
-          addCategoryForm.addEventListener('submit', async (event) => {
-                event.preventDefault();
-                
-                const categoryName = document.getElementById('categoryName').value;
-                const categoryDescription = document.getElementById('categoryDescription').value;
-
-                const response = await fetch('https://localhost:44325/api/Categories', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        categoryName: categoryName,
-                        categoryDescription: categoryDescription
-                    })
-                });
-
-                if (response.ok) {
-                    alert('Category added successfully.');
-                    $('#addCategoryModal').modal('hide'); // Close the modal
-                    loadCategories(); // Refresh the categories list
-                } else {
-                    alert('Failed to add category.');
-                }
+        const categoriesContainer = document.getElementById('categoriesContainer');
+    
+        async function loadCategories() {
+          const response = await fetch('https://localhost:44325/api/Categories/GetAllCategories');
+          if (response.ok) {
+            const categories = await response.json();
+            categoriesContainer.innerHTML = '';
+    
+            categories.forEach(category => {
+              const card = `
+                <div class="col-md-4 mb-4">
+                  <div class="card">
+                    <img src="${category.categoryImage}" class="card-img-top" alt="${category.categoryName}">
+                    <div class="card-body">
+                      <h5 class="card-title">${category.categoryName}</h5>
+                      <p class="card-text">${category.categoryDescription || 'No description available'}</p>
+                      <button class="btn btn-warning" onclick="editCategory(${category.categoryId})">Edit</button>
+                      <button class="btn btn-danger" onclick="deleteCategory(${category.categoryId})">Delete</button>
+                    </div>
+                  </div>
+                </div>
+              `;
+              categoriesContainer.innerHTML += card;
             });
-
-          // Load categories on page load
-          loadCategories();
+          } else {
+            console.error('Failed to fetch categories');
+          }
+        }
+    
+        loadCategories();
+        
       });
-  </script>
-  
+    
+      window.editCategory = async (id) => {
+        const response = await fetch(`https://localhost:44325/api/Categories/${id}`);
+        if (response.ok) {
+          const category = await response.json();
+    
+          document.getElementById('editCategoryId').value = category.categoryId;
+          document.getElementById('editCategoryName').value = category.categoryName;
+          document.getElementById('editCategoryDescription').value = category.categoryDescription;
+          document.getElementById('editCategoryImage').value = category.categoryImage;
+    
+          const modal = new bootstrap.Modal(document.getElementById('editCategoryModal'));
+          modal.show();
+        } else {
+          console.error('Failed to fetch category details');
+        }
+      };
+    // Delete a category
+    window.deleteCategory = async (id) => {
+      if (confirm('Are you sure you want to delete this category?')) {
+        const response = await fetch(`https://localhost:44325/api/Categories/${id}`, {
+          method: 'DELETE'
+        });
+
+        if (response.ok) {
+          alert('Category deleted successfully!');
+          loadCategories(); // Reload categories after deletion
+        } else {
+          alert('Failed to delete category.');
+          console.error('Delete failed:', await response.text());
+        }
+      }
+    };
+
+      document.getElementById('editCategoryForm').addEventListener('submit', async (event) => {
+        event.preventDefault();
+    
+        const categoryId = document.getElementById('editCategoryId').value;
+        const updatedCategory = {
+          categoryName: document.getElementById('editCategoryName').value,
+          categoryDescription: document.getElementById('editCategoryDescription').value,
+          categoryImage: document.getElementById('editCategoryImage').value
+        };
+    
+        const response = await fetch(`https://localhost:44325/api/Categories/${categoryId}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(updatedCategory)
+        });
+    
+        if (response.ok) {
+          alert('Category updated successfully!');
+          loadCategories(); // Reload categories to reflect changes
+          const modal = bootstrap.Modal.getInstance(document.getElementById('editCategoryModal'));
+          modal.hide();
+        } else {
+          alert('Failed to update category. Please try again.');
+          console.error('Update failed:', await response.text());
+        }
+      });
+      
+    </script>
   </body>
   <!-- [Body] end -->
 

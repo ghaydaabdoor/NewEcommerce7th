@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Project7Candy.DTO;
 using Project7Candy.Models;
+using static Project7Candy.DTO.ProductsDOTs;
 
 namespace Project7Candy.Controllers
 {
@@ -303,7 +305,33 @@ namespace Project7Candy.Controllers
             return Ok(all);
         }
 
+        [HttpGet("Get/Related/Products/{id}")]
+        public IActionResult GetRelatedProducts(int id)
+        {
+            var product = _db.Products.Include(p => p.Category).FirstOrDefault(p => p.ProductId == id);
+            if (product == null)
+            {
+                return NotFound("Product not found.");
+            }
 
+            var relatedProducts = _db.Products
+                .Where(p => p.CategoryId == product.CategoryId && p.ProductId != id)
+                .Select(p => new ProductDTO
+                {
+                    
+                    ProductId = p.ProductId,
+                    ProductName = p.ProductName,
+                    ProductDescription = p.ProductDescription,
+                    Price = p.Price,
+                    Stock = p.Stock,
+                    Discount = p.Discount,
+                    Rate = p.Rate,
+                    ProductImage = p.ProductImage
+                })
+                .ToList();
+
+            return Ok(relatedProducts);
+        }
 
 
 

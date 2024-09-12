@@ -42,7 +42,7 @@ namespace Project7Candy.Controllers
         //    return Ok(order);
         //}
 
-        [HttpPost]
+        [HttpPost("createOrderAPI")]
         public async Task<IActionResult> CreateOrder([FromBody] CreateOrderDTO newOrder)
         {
             if (!ModelState.IsValid)

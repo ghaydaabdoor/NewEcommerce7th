@@ -11,7 +11,7 @@ async function Product() {
     priceItem.innerHTML += `
       <div class="pro-prlb pro-sale">
           <div class="price-box">
-              <span class="new-price">${data.price}</span>
+              <span class="new-price">${data.price} JOD</span>
           </div>
       </div>
       `;
@@ -234,7 +234,7 @@ async function Product() {
   
           if (!response.ok) {
             const errorMessage = await response.text();
-            window.alert("Error: " + errorMessage);
+            window.alert("rate is added");
             console.error("Server Error:", errorMessage); // Log server error
             return;
           }
@@ -286,47 +286,51 @@ async function Product() {
   CheckRate();
   ///////////////////////////////////////////////////////////////////////////////Break///////////////////////////////////////////////////////////////////////////////
   async function DetailsCommentToPro() {
-  
+    // localStorage.setItem("productId", 26);
     const id = localStorage.getItem("productId");
     const url = `https://localhost:44325/api/productDetails/GetAllComment/${id}`;
-    
+  
     try {
       const response = await fetch(url);
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
-      
+  
       const comments = await response.json(); // This will be an array of comments
       const AddComment = document.getElementById("AddNewComment");
-      
+  
       // Clear existing content
       AddComment.innerHTML = '';
-      
+  
       // Check if there are comments
       if (comments.length === 0) {
         AddComment.innerHTML = '<p>No comments found.</p>';
         return;
       }
-      
+  
       // Iterate over the comments array and create HTML for each comment
       comments.forEach(comment => {
+        // Format the createdAt date-time string
+        let formattedDateTime = comment.createdAt.split('.')[0]; // Remove milliseconds
+        formattedDateTime = formattedDateTime.replace('T', '   '); // Replace 'T' with spaces
+  
         AddComment.innerHTML += `
           <div class="comment-avtar">
             <div class="review-name">
               <span class="avtar-cmt">
-                <span class="cmt-auth">Ol</span>
+                <span class="cmt-auth">Guest</span>
               </span>
             </div>
             <div class="review-info">
-              <span class="cmt-authr"> ${comment.commentId} </span>
+              <span class="cmt-authr"> ${formattedDateTime} </span>
             </div>
           </div>
           <div class="comment-content">
             <div class="comment-desc">
               <p>${comment.commentText}</p>
             </div>
-          </div>
-        `;
+          </div>`
+        ;
       });
     } catch (error) {
       console.error('Fetch error:', error);
@@ -418,7 +422,60 @@ async function Product() {
   }
     CommentToPro();
   ///////////////////////////////////////////////////////////////////////////////Break///////////////////////////////////////////////////////////////////////////////
+  async function SwiperProduct() {
+    debugger
+    var id = localStorage.getItem("productId");
+    let url = `https://localhost:44325/api/productDetails/Get/Related/Products/${id}`;
+    let response = await fetch(url);
+    let data = await response.json();
+    
+    let swiperWrapper = document.querySelector('.swiper-wrapper');
+    
+    data.forEach(element => {
+      swiperWrapper.innerHTML += `
+        <div class="swiper-slide">
+          <div class="single-product-wrap">
+            <div class="product-image">
+              <a href="product-details.html?id=${element.productId}" class="pro-img">
+                <img src="${element.productImage}" class="img-fluid img1" alt="${element.productName}">
+                <img src="${element.productImage}" class="img-fluid img2" alt="${element.productName}">
+              </a>
+            </div>
+            <div class="product-content">
+              <div class="product-rating">
+                <span class="star-rating">
+                  ${'<i class="fas fa-star"></i>'.repeat(element.rate || 5)}
+                  ${'<i class="far fa-star"></i>'.repeat(5 - (element.rate || 3))}
+                </span>
+              </div>
+              <h6><a href="product-template2.html?id=${element.productId}">${element.productName}</a></h6>
+              <div class="price-box">
+                <span class="new-price">JOD${element.price}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    });
+    
+    console.log(data);
   
+    // Initialize Swiper after content is added
+    var swiper = new Swiper('.swiper', {
+      slidesPerView: 4,
+      spaceBetween: 10,
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      // You can add more Swiper options here as needed
+    });
+  }
+  SwiperProduct();
   ///////////////////////////////////////////////////////////////////////////////Break///////////////////////////////////////////////////////////////////////////////
   function Added(id) {
   // debugger;

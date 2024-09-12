@@ -1,5 +1,5 @@
 async function addToCart() {
-
+    debugger
     let n = localStorage.getItem("productId");
     let cartID = localStorage.getItem("CARTID") || Date.now();  // generate cartID if not present
     let cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
@@ -26,7 +26,6 @@ async function addToCart() {
     // Add new item to the cart with a unique CartItemId
     let product = {
         cartItemId: cartItemId,  // Set the auto-incremented CartItemId
-        cartId: cartID,
         productID: n,
         quantity: parseInt(quantity),
         price: result.price,  // Example price, this should come from the actual product data
@@ -68,6 +67,7 @@ if (localStorage.UserID == null){
             body: JSON.stringify(request),
         });
 
+        let data=response;
         window.location.href = "cart-page.html";
     }
 }

@@ -190,7 +190,38 @@ namespace Project7Candy.Controllers
 
 
         /////////////////////////////////////////////////////////////// 
+        
 
+        [HttpGet("OrdersItems")]
+        public IActionResult GetOrderItems(int carId)
+        {
+
+            var userItems = _db.OrderItems.Include(o => o.Product).Where(a => a.OrderId == carId).Select(x => new
+            {
+
+                x.OrderItemId,
+                x.Product.ProductName,
+                x.Product.ProductDescription,
+                x.Product.Price,
+                x.Product.ProductImage,
+                x.Quantity
+            })
+                        .ToList();
+            return Ok(userItems);
+        }
+
+        //[HttpPost("CreateOrderItemsGharaibeh")]
+        //public IActionResult CreateOrderItems([FromBody] OrderItem item)
+        //{
+        //    var data = new OrderItem
+        //    {
+        //        OrderId = item.OrderId,
+        //        ProductId = item.ProductId, 
+        //        Quantity= item.Quantity,
+        //    };
+        //    return Ok();
+        //}
+        ///////////////////////////////////////////////////////////////
         [HttpGet("GetAllVouchers")]
         public IActionResult GetAllVouchers()
         {

@@ -24,18 +24,48 @@ namespace Project7Candy.Controllers
         }
 
         // GET: api/Categories/5
-        [HttpGet("{id}")]
-        public IActionResult GetCategory(int id)
+        //[HttpGet("{id}")]
+        //public IActionResult GetCategory(int id)
+        //{
+        //    var category = _db.Categories.Find(id);
+
+        //    if (category == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    return Ok(category);
+        //}
+
+        // Get category by ID
+[HttpGet("GetCategoryByID{id}")]
+public IActionResult GetCategoryById(int id)
+{
+    if (id < 1)
+    {
+        return BadRequest("ID must be greater than 0");
+    }
+
+    var category = _db.Categories.FirstOrDefault(c => c.CategoryId == id);
+    if (category == null)
+    {
+        return NotFound(); //404
+    }
+
+    return Ok(category);
+}
+
+        [HttpGet("{name}")]
+        public IActionResult GetCatgeoryByNAme(string name)
         {
-            var category = _db.Categories.Find(id);
-
-            if (category == null)
-            {
-                return NotFound();
-            }
-
+            var category = _db.Categories.FirstOrDefault(p => p.CategoryName == name);
             return Ok(category);
         }
+
+
+
+
+
         [HttpPost]
         public IActionResult AddCategory([FromBody] CategoriesDTO category)
         {
@@ -59,28 +89,30 @@ namespace Project7Candy.Controllers
 
         // Update existing category
         [HttpPut("{id}")]
-        public IActionResult UpdateCategory([FromBody] CategoriesDTO category)
+        public IActionResult UpdateCategory(int id, [FromBody] CategoriesDTO updatedCategory)
         {
-                var data = new Category
-                {
-                    CategoryName = category.CategoryName,
-                    CategoryDescription = category.CategoryDescription,
-                    CategoryImage = category.CategoryImage,
-                    CategoryIcon = category.CategoryIcon,
-                };
-                if (!ModelState.IsValid)
-                {
-                    return BadRequest(ModelState);
-                }
 
-                _db.Categories.Add(data);
-                _db.SaveChanges();
-
-                return Ok(data);
+            // Find the category in the database
+            var category = _db.Categories.Find(id);
+            if (category == null)
+            {
+                return NotFound(); // Category not found
             }
 
-            // Delete category by ID
-            [HttpDelete("{id}")]
+            // Update category fields
+            category.CategoryName = updatedCategory.CategoryName;
+            category.CategoryDescription = updatedCategory.CategoryDescription;
+            category.CategoryImage = updatedCategory.CategoryImage;
+
+            // Save changes to the database
+            _db.SaveChanges();
+
+            return NoContent(); // Indicate successful update
+        }
+
+
+        // Delete category by ID
+        [HttpDelete("{id}")]
         public IActionResult DeleteCategory(int id)
         {
             if (id < 1)

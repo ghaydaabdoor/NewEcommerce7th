@@ -253,27 +253,40 @@ namespace Project7Candy.Controllers
         {
             var userCheckIn = _db.UserCheckIns.FirstOrDefault(u => u.UserId == userId);
 
+            // If the userCheckIn record doesn't exist, create a new one
             if (userCheckIn == null)
             {
-                return NotFound(new { message = "User not found" });
+                userCheckIn = new UserCheckIn
+                {
+                    UserId = userId,
+                    Points = 0,
+                    LastCheckInDate = null,
+                    HasVoucher = 0
+                };
+                _db.UserCheckIns.Add(userCheckIn);
+                _db.SaveChanges(); // Save the new user check-in record
             }
 
             var today = DateTime.UtcNow.Date;
             var lastCheckInDate = userCheckIn.LastCheckInDate.HasValue ? userCheckIn.LastCheckInDate.Value.Date : DateTime.MinValue;
 
-
+            // Reset points if the user didn't check in yesterday
             if (lastCheckInDate < today.AddDays(-1))
             {
                 userCheckIn.Points = 0;
             }
+
+            // Prevent multiple check-ins on the same day
             if (userCheckIn.LastCheckInDate.HasValue && userCheckIn.LastCheckInDate.Value.Date == today)
             {
                 return BadRequest(new { message = "You can only check in once per day." });
             }
 
+            // Increment points and update the last check-in date
             userCheckIn.Points = (userCheckIn.Points ?? 0) + 1;
             userCheckIn.LastCheckInDate = DateTime.UtcNow;
 
+            // If the user has checked in for 7 consecutive days, reset points and create a voucher
             if (userCheckIn.Points >= 7)
             {
                 userCheckIn.Points = 0;
@@ -290,8 +303,11 @@ namespace Project7Candy.Controllers
                     IsActive = 1
                 };
 
+                // Add the voucher to the database
                 _db.Vouchers.Add(voucher);
+                _db.SaveChanges(); // Save the voucher before using its ID
 
+                // Associate the voucher with the user
                 var userVoucherUsage = new UserVoucherUsage
                 {
                     UserId = userId,
@@ -302,17 +318,18 @@ namespace Project7Candy.Controllers
                 _db.UserVoucherUsages.Add(userVoucherUsage);
             }
 
+            // Save all changes to the database
             _db.SaveChanges();
 
             return Ok(new
             {
                 Points = userCheckIn.Points,
                 Message = userCheckIn.Points >= 7
-        ? "Congratulations! You've earned a voucher."
-        : $"You have checked in for {userCheckIn.Points} days. Keep going until you reach 7 days to earn a voucher with 50% discount!"
+                    ? "Congratulations! You've earned a voucher."
+                    : $"You have checked in for {userCheckIn.Points} days. Keep going until you reach 7 days to earn a voucher with 50% discount!"
             });
-
         }
+        /////////////////////////////////////////////////////////////////////////////////////
 
         private string GenerateVoucherCode()
         {

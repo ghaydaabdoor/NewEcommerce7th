@@ -165,26 +165,28 @@ javaScript code  -->
 <script>
 // استدعاء البيانات من localStorage.
 
-let userId = localStorage.getItem('userID');
+let userId = localStorage.getItem('UserID');
 let totalAmount = localStorage.getItem('TotalAmount');
+let x = parseFloat(totalAmount.split(' ')[0]);
 let paymentMethod = localStorage.getItem('PaymentMethod');
 let orderStatus = localStorage.getItem('OrderStatus');
 let comment = localStorage.getItem('Comment');
 
 // تحديد البيانات التي سيتم إرسالها
+
 const orderData = {
-    UserId: userId,
-    TotalAmount: totalAmount,
-    PaymentMethod: paymentMethod,
-    OrderStatus: orderStatus,
-    Comment: comment,
-    OrderDate: new Date().toISOString().split('T')[0] // تحويل التاريخ إلى الصيغة المناسبة
+    userId: userId,
+    totalAmount: x,
+    paymentMethod: paymentMethod,
+    orderStatus: orderStatus,
+    comment: comment,
+    orderDate: new Date().toISOString().split('T')[0] // تحويل التاريخ إلى الصيغة المناسبة
 };
 
 // إرسال البيانات عبر Fetch API
 async function sendOrderData() {
     debugger
-    const response = await fetch('https://localhost:44325/api/Orders', {
+    const response = await fetch('https://localhost:44325/api/Orders/createOrderAPI', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -217,13 +219,13 @@ function initPayPalButton() {
         },
 
         createOrder: function(data, actions) {
-            const totalAmount = localStorage.getItem('TotalAmount') || '0.99'; // Default to 0.99 if not set
+            const totalAmount = localStorage.getItem('TotalAmount'); // Default to 0.99 if not set
 
             return actions.order.create({
                 purchase_units: [{
                     amount: {
                         currency_code: "USD",
-                        value: totalAmount
+                        value: x
                     }
                 }]
             });

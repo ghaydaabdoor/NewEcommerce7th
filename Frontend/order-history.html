@@ -371,6 +371,7 @@
                         <th>Status</th>
                         <th>Total</th>
                         <th>Invoice</th>
+                        <th>Order Details</th>
                       </tr>
                     </thead>
                     <tbody id="Orders"></tbody>
@@ -1388,25 +1389,15 @@
               </div>
           </li>
           <li class="mini-info">
-              <!-- minicart agree-text start -->
-              <label class="box-area">
-                  <span class="agree-text">I have read and agree with the <a href="terms-condition.html">terms &
-                          condition.</a></span>
-                  <input type="checkbox" class="cust-checkbox">
-                  <span class="cust-check"></span>
-              </label>
-              <!-- minicart agree-text end -->
               <!-- minicart button start -->
               <div class="cart-btn">
-                  <a href="cart-page.html" class="btn btn-style2">View cart</a>
-                  <a onclick="checkoutCart()" href="checkout-style1.html"
-                      class="btn btn-style2 checkout disabled">Checkout</a>
+                  <a onclick="checkoutCart()" class="btn btn-style2">View cart</a>
               </div>
               <!-- minicart button end -->
           </li>
       </ul>
   </div>
-    <!-- minicart end -->
+  <!-- minicart end -->
     <!-- quickview modal start -->
     <div class="productmodal">
       <div class="modal fade" id="quickview" tabindex="-1">
@@ -1710,6 +1701,10 @@
                     <i class="fa fa-download"></i> Download
                   </button>
                 </td>
+                <td>
+                  <button id="orderDetailsBtn" onclick="getOrderDetails(${element.orderId})">Details</button>
+
+                  </td>
               </tr>
             `;
         });
@@ -1792,8 +1787,57 @@
             window.location.href="collection.html";
         }
     </script>
+     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+      function getOrderDetails(orderId) {
+        fetch(`https://localhost:44325/api/Profile/OrdersItems?carId=${orderId}`)
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Error fetching order details");
+            }
+            return response.json();
+          })
+          .then((data) => {
+            if (data.length > 0) {
+              let itemsHtml = "<ul>";
+              data.forEach((item) => {
+                itemsHtml +=` 
+                        
+                            <li>
+                                <strong>Product Name:</strong> ${item.productName}<br>
+                                <strong>Description:</strong> ${item.productDescription}<br>
+                                <strong>Price:</strong> $${item.price}<br>
+                                <img src="${item.productImage}" alt="${item.productName}" style="width: 50px; height: 50px;"><br>
+                                <strong>Quantity:</strong> ${item.quantity}
+                            </li><br>
+                            <hr>
+                       ` ;
+              });
+              itemsHtml += "</ul>";
+
+              Swal.fire({
+                title: "Order Items",
+                html: itemsHtml,
+                width: "600px",
+                showCloseButton: true,
+                focusConfirm: false,
+                confirmButtonText: "OK",
+                customClass: {
+                  popup: "my-sweetalert",
+                },
+              });
+            } else {
+              Swal.fire("No items found for this order.", "", "warning");
+            }
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+            Swal.fire("Error fetching order details", "", "error");
+          });
+      }
+    </script>
+
     <script src="minicart.js"></script>
   </body>
 
-  <!-- Mirrored from spacingtech.com/html/banno/banno-ltr/order-history.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 05 Sep 2024 18:48:29 GMT -->
 </html>

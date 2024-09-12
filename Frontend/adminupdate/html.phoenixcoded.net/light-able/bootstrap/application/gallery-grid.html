@@ -139,8 +139,16 @@
               <span class="pc-micon">
                 <i class="ph-duotone ph-calendar-blank"></i>
               </span>
-              <span class="pc-mtext">Calendar</span></a
+              <span class="pc-mtext">Add New Vouchers</span></a
             >
+            <li class="pc-item">
+              <a href="ShowVouchers.html" class="pc-link">
+                <span class="pc-micon">
+                  <i class="ph-duotone ph-calendar-blank"></i>
+                </span>
+                <span class="pc-mtext">ShowVouchers</span></a
+              >
+            </li>
           </li>
           <!-- <li class="pc-item">
             <a href="chat.html" class="pc-link">
@@ -150,33 +158,31 @@
               <span class="pc-mtext">Chat</span></a
             >
           </li> -->
-          <li class="pc-item pc-hasmenu">
-            <a href="#!" class="pc-link">
-              <span class="pc-micon">
-                <i class="ph-duotone ph-image"></i>
-              </span>
-              <span class="pc-mtext">Gallery</span><span class="pc-arrow"><i data-feather="chevron-right"></i></span
-            ></a>
-            <ul class="pc-submenu">
-              <li class="pc-item"><a class="pc-link" href="gallery-grid.html">Grid</a></li>
-              <!-- <li class="pc-item"><a class="pc-link" href="gallery-masonry.html">Masonry</a></li> -->
-            </ul>
+          <li class="pc-item">
+            <a class="pc-link" href="gallery-grid.html">Grid</a>
           </li>
-          <li class="pc-item pc-hasmenu">
-            <a href="#!" class="pc-link">
-              <span class="pc-micon">
-                <i class="ph-duotone ph-shopping-cart"></i>
-              </span>
-              <span class="pc-mtext">E-commerce</span><span class="pc-arrow"><i data-feather="chevron-right"></i></span
-            ></a>
-            <ul class="pc-submenu">
-              <li class="pc-item"><a class="pc-link" href="ecom_product.html">Product</a></li>
-              <li class="pc-item"><a class="pc-link" href="ecom_product-details.html">Product details</a></li>
-              <li class="pc-item"><a class="pc-link" href="ecom_product-list.html">Product List</a></li>
-              <li class="pc-item"><a class="pc-link" href="ecom_product-add.html">Add New Product</a></li>
-              <li class="pc-item"><a class="pc-link" href="ecom_checkout.html">Checkout</a></li>
-            </ul>
+          <li class="pc-item">
+            <a class="pc-link" href="ecom_product.html">Gategory</a>
           </li>
+          <li class="pc-item"></li>
+              <a class="pc-link" href="ecom_Category.html">Add New Category</a>
+            </li>
+          <li class="pc-item">
+            <a class="pc-link" href="ecom_product-details.html">Comments Controls</a>
+          </li>
+          <li class="pc-item">
+            <a class="pc-link" href="ecom_product-list.html">Product List</a>
+          </li>
+          <li class="pc-item">
+            <a class="pc-link" href="ecom_product-add.html">Add New Product</a>
+          </li>
+          <li class="pc-item">
+            <a class="pc-link" href="ecom_checkout.html">User's Orders</a>
+          </li>
+          <li class="pc-item"></li>
+            <a class="pc-link" href="users.html">Users Information</a>
+          </li>
+          
           <!-- <li class="pc-item pc-hasmenu">
             <a href="#!" class="pc-link"
               ><span class="pc-micon"><i class="ph-duotone ph-lifebuoy"></i></span><span class="pc-mtext">Helpdesk</span
@@ -739,14 +745,7 @@
               <span class="pc-mtext">Sample page</span></a
             ></li
           > -->
-        <div class="card nav-action-card bg-brand-color-4">
-          <div class="card-body"
-            style="background-image: url('https://html.phoenixcoded.net/light-able/bootstrap/assets/images/layout/nav-card-bg.svg')">
-            <h5 class="text-dark">Help Center</h5>
-            <p class="text-dark text-opacity-75">Please contact us for more questions.</p>
-            <a href="https://phoenixcoded.support-hub.io/" class="btn btn-primary" target="_blank">Go to help Center</a>
-          </div>
-        </div>
+       
       </div>
       <div class="card pc-user-card">
         <div class="card-body">
@@ -827,23 +826,9 @@
               aria-haspopup="false" aria-expanded="false">
               <i class="ph-duotone ph-magnifying-glass"></i>
             </a>
-            <div class="dropdown-menu pc-h-dropdown drp-search">
-              <form class="px-3">
-                <div class="mb-0 d-flex align-items-center">
-                  <input type="search" class="form-control border-0 shadow-none" placeholder="Search..." />
-                  <button class="btn btn-light-secondary btn-search">Search</button>
-                </div>
-              </form>
-            </div>
+       
           </li>
-          <li class="pc-h-item d-none d-md-inline-flex">
-            <form class="form-search">
-              <i class="ph-duotone ph-magnifying-glass icon-search"></i>
-              <input type="search" class="form-control" placeholder="Search..." />
-
-              <button class="btn btn-search" style="padding: 0"><kbd>ctrl+k</kbd></button>
-            </form>
-          </li>
+       
         </ul>
       </div>
       <!-- [Mobile Media Block end] -->
@@ -1544,27 +1529,29 @@
       var response= await fetch(url);
       var data= await response.json();
       data.forEach(element => {
-        CommentsContainer.innerHTML+=`
+        CommentsContainer.innerHTML += `
   <div class="col-xl-3 col-md-4 col-sm-6 mb-4">
     <div class="card h-100">
       <div class="card-body">
-          <!-- User Details -->
-          <h5 class="card-title">${element.name}</h5>
-          <p class="text-muted mb-1"><strong>Email:</strong>${element.email}</p>
-          <p class="text-muted mb-1"><strong>Subject:</strong>${element.subject}</p>
-          <hr>
-          <!-- User Feedback Message -->
-          <p class="card-text">"${element.message}"</p>
-        </div>
-        <div class="card-footer text-muted">
-          Submitted on:${element.sentDate}
-        </div>
+        <!-- User Details -->
+        <h5 class="card-title">${element.name}</h5>
+        <p class="text-muted mb-1"><strong>Email:</strong> ${element.email}</p>
+        <p class="text-muted mb-1"><strong>Subject:</strong> ${element.subject}</p>
+        <hr>
+        <!-- User Feedback Message -->
+        <p class="card-text">"${element.message}"</p>
+      </div>
+      <div class="card-footer text-muted">
+        Submitted on: ${element.sentDate}
+        <br>
+        <!-- Reply Button -->
+        <a href="mailto:${element.email}?subject=Re: ${element.subject}" class="btn btn-primary mt-2">Reply</a>
       </div>
     </div>
-    <!-- Feedback Card End -->
+  </div>
+  <!-- Feedback Card End -->
 `;
-        
-      });
+        });
     }
     getAllComments();
   </script>

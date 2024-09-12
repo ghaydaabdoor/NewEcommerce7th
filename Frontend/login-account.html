@@ -1129,64 +1129,54 @@
         </div>
     </div>
     <!-- mobile-menu end -->
-    <!-- mini-cart start -->
-    <div id="minicart" class="mini-cart">
-        <div class="cart-text">
-            <!-- minicart-empty start -->
-            <p class="d-none">No products in the cart.</p>
-            <!-- minicart-empty end -->
-            <!-- minicart-fill start -->
-            <p id="count">
+   <!-- mini-cart start -->
+   <div id="minicart" class="mini-cart">
+    <div class="cart-text">
+        <!-- minicart-empty start -->
+        <p class="d-none">No products in the cart.</p>
+        <!-- minicart-empty end -->
+        <!-- minicart-fill start -->
+        <p id="count">
 
-            </p>
-            <!-- minicart-fill end -->
-            <!-- minicart-close start -->
+        </p>
+        <!-- minicart-fill end -->
+        <!-- minicart-close start -->
 
-            <button class="cart-close"><i class="feather-x"></i></button>
-            <!-- minicart-close end -->
-        </div>
-        <!-- minicart empty-content start -->
-        <div class="empty-cart d-none">
-            <span class="cart-icon"><i class="bi bi-bag-dash"></i></span>
-            <a href="collection.html" class="btn btn-style">Continue shopping</a>
-        </div>
-        <!-- minicart empty-content end -->
-        <ul class="cart-item">
-
-
-        </ul>
-        <!-- minicart-total start -->
-        <ul class="subtotal-area">
-            <li class="subtotal-info">
-                <div id="subtotal" class="subtotal-titles">
-                    <!-- minicart total-title start -->
-                    <h6 class="cart-total">Subtotal:</h6>
-                    <!-- minicart total-title end -->
-                    <!-- minicart total-price start -->
-
-                    <!-- minicart total-price end -->
-                </div>
-            </li>
-            <li class="mini-info">
-                <!-- minicart agree-text start -->
-                <label class="box-area">
-                    <span class="agree-text">I have read and agree with the <a href="terms-condition.html">terms &
-                            condition.</a></span>
-                    <input type="checkbox" class="cust-checkbox">
-                    <span class="cust-check"></span>
-                </label>
-                <!-- minicart agree-text end -->
-                <!-- minicart button start -->
-                <div class="cart-btn">
-                    <a href="cart-page.html" class="btn btn-style2">View cart</a>
-                    <a onclick="checkoutCart()" href="checkout-style1.html"
-                        class="btn btn-style2 checkout disabled">Checkout</a>
-                </div>
-                <!-- minicart button end -->
-            </li>
-        </ul>
+        <button class="cart-close"><i class="feather-x"></i></button>
+        <!-- minicart-close end -->
     </div>
-    <!-- minicart end -->
+    <!-- minicart empty-content start -->
+    <div class="empty-cart d-none">
+        <span class="cart-icon"><i class="bi bi-bag-dash"></i></span>
+        <a href="collection.html" class="btn btn-style">Continue shopping</a>
+    </div>
+    <!-- minicart empty-content end -->
+    <ul class="cart-item">
+
+
+    </ul>
+    <!-- minicart-total start -->
+    <ul class="subtotal-area">
+        <li class="subtotal-info">
+            <div id="subtotal" class="subtotal-titles">
+                <!-- minicart total-title start -->
+                <h6 class="cart-total">Subtotal:</h6>
+                <!-- minicart total-title end -->
+                <!-- minicart total-price start -->
+
+                <!-- minicart total-price end -->
+            </div>
+        </li>
+        <li class="mini-info">
+            <!-- minicart button start -->
+            <div class="cart-btn">
+                <a onclick="checkoutCart()" class="btn btn-style2">View cart</a>
+            </div>
+            <!-- minicart button end -->
+        </li>
+    </ul>
+</div>
+<!-- minicart end -->
     <!-- quickview modal start -->
     <div class="productmodal">
         <div class="modal fade" id="quickview" tabindex="-1">
@@ -1444,86 +1434,106 @@
         }
 
         async function getCartID() {
+            debugger
             var y = localStorage.getItem("UserID");
             var url = `https://localhost:44325/api/CartItem/getCartbyUserIDDDD/${y}`;
             var response = await fetch(url);
             var data = await response.json();
             var cartID = data.cartId;
             localStorage.setItem("CARTID", cartID);
+            let cartId = localStorage.getItem("CARTID");
+            if (!cartId) {
+                alert("Failed to get the main cart ID. Please try again.");
+                return;
+            }
+
         }
 
 
         async function transferMiniCartToMainCart() {
-            let cartItems = JSON.parse(localStorage.getItem("cartItems"));
-            if (cartItems.length === 0) return;
+    debugger;
+    let cartItems = JSON.parse(localStorage.getItem("cartItems"));
+    if (!cartItems || cartItems.length === 0) {
+        alert("No items in mini-cart to transfer.");
+        return;
+    }
 
-            let url = "https://localhost:44325/api/CartItem/addtocart";
-            let userId = localStorage.getItem("UserID");
+    let url = "https://localhost:44325/api/CartItem/addtocart";
+    let requestBody = {
+        cartId: localStorage.getItem("CARTID"),
+        items: cartItems.map(item => ({
+            productId: item.productID,
+            quantity: item.quantity
+        }))
+    };
 
-            for (let item of cartItems) {
-                let request = {
-                    productId: item.productID,
-                    quantity: item.quantity,
-                    cartId: localStorage.CARTID,
-                };
+    let response = await fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(requestBody),
+    });
 
-                let response = await fetch(url, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(request),
-                });
+    if (!response.ok) {
+        alert("Failed to transfer items from mini-cart to main cart. Please try again.");
+        return;
+    }
 
-                if (!response.ok) {
-                    alert("Failed to transfer items from mini-cart to main cart. Please try again.");
-                    return;
-                }
-            }
+    // Clear mini-cart after successful transfer
+    localStorage.removeItem("cartItems");
+    alert("All items transferred to main cart.");
+}
 
-            // Clear mini-cart after successful transfer
-            localStorage.removeItem("cartItems");
+
+
+       async function login() {
+    debugger
+    event.preventDefault();
+    const url = "https://localhost:44325/api/User/login";
+    var form = document.getElementById("form");
+    event.preventDefault();
+
+    var formData = new FormData(form);
+    let response = await fetch(url, {
+        method: 'POST',
+        body: formData,
+    })
+    var result = await response.json();
+
+    let token = localStorage.jwtToken = result.token;
+    let user = localStorage.UserID = result.userId;
+    localStorage.setItem("UserID", result.userId);
+    let usertype = localStorage.UserType = result.userType;
+    console.log("token", token);
+    console.log("UserID", user);
+    console.log("usertype", usertype);
+
+    if (result.userType == "Admin") {
+        window.alert("Admin logged in successfully");
+        window.location.href = "./adminupdate/html.phoenixcoded.net/light-able/bootstrap/application/account-profile.html";
+        return;
+    }
+
+    if (response.ok) {
+        debugger;
+        console.log("response", response);
+        window.alert("User logged in successfully");
+        await getCartID();
+        
+        let cartId = localStorage.getItem("CARTID");
+        if (!cartId) {
+            window.alert("Failed to get the main cart ID. Please try again.");
+            return;
         }
 
-        async function login() {
-            event.preventDefault();
-            const url = "https://localhost:44325/api/User/login";
-            var form = document.getElementById("form");
-            event.preventDefault();
+        await transferMiniCartToMainCart();
+        window.location.href = 'collection.html';
+    } else {
+        window.alert("email or password wrong");
+    }
+}
 
-
-            var formData = new FormData(form);
-            let response = await fetch(url, {
-                method: 'POST',
-                body: formData,
-            })
-            var result = await response.json();
-
-            let token = localStorage.jwtToken = result.token;
-            let user = localStorage.UserID = result.userId;
-            localStorage.setItem("UserID", result.userId);
-            let usertype = localStorage.UserType = result.userType
-            console.log("token", token)
-            console.log("UserID", user)
-            console.log("usertype", usertype)
-            if (result.userType == "Admin") {
-                window.alert("Admin logged in successfully ");
-                window.location.href = "./adminupdate/html.phoenixcoded.net/light-able/bootstrap/application/account-profile.html";
-                return;
-            }
-            if (response.ok) {
-                console.log("response", response)
-                window.alert("User logged in successfully ");
-                await getCartID();
-                transferMiniCartToMainCart();
-                window.location.href = 'cart-page.html';
-            }
-
-            else {
-                window.alert("email or password wrong");
-            };
-
-        }
 
     </script>
     <script type="module">
@@ -1597,7 +1607,7 @@
                     //                 body: JSON.stringify(userData),
                     //             });
 
-                    window.location.href = "../Index/index.html";
+                    window.location.href = "index-2.html";
                 } catch (error) {
                     console.error("Error during login:", error);
                     alert("Error during login. Please try again.");
@@ -1674,6 +1684,7 @@
         }
 
     </script>
+    <script src="minicart.js"></script>
 
 </body>
 
